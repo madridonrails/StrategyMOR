@@ -1,0 +1,63 @@
+<br/>
+<div class="Title14Orange"><img alt="Icon-arrow2" src="/images/icon-arrow2.gif"/>&nbsp;Registro gratuito</div>
+<div id="divider"><img alt="Px" src="/images/px.gif"/s></div>
+<div id="message_area" class="Title14Orange" style="display:none;"><%= flash[:error] %><%= flash[:notice] %></div>  
+<% options = {:controller => 'account', :action => 'register'} %>
+<%= form_remote_tag :url => options, :html => { :href => url_for(options)}, :loading => 'Element.hide("message_area");' %>
+  <br/>
+  <table width="500px" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td colspan="2" valign="top" class="Text13Grey">
+        Nombre (empresa/organizaci&oacute;n/persona f&iacute;sica) *<br/>
+        <%= text_field_tag 'enterprise_name', nil,  {:class => "formField", :size => "40"} %>
+        <br/>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" valign="top" class="Text13Grey">
+        Direcci&oacute;n personalizada para tu p&aacute;gina de acceso *<br/>
+        http://<%= text_field_tag 'enterprise_alias', nil,  {:class => "formField", :size => "30"} %>.<%= DOMAIN_NAME %>
+        <br/>
+      </td>
+    </tr>
+    <tr>
+      <td width="50%" valign="top" class="Text13Grey">
+        Email del administrador *<br/>
+        <%= text_field_tag 'email', nil,  {:class => "formField", :size => "20"} %>.
+        <br/>
+      </td> 
+      <td width="50%">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="50%" valign="top" class="Text13Grey">
+        Nombre del administrador *<br/>
+        <%= text_field_tag 'first_name', nil,  {:class => "formField", :size => "20"} %>.
+        <br/>
+      </td>
+      <td width="50%" class="Text13Grey">
+        Apellidos *<br/>
+        <%= text_field_tag 'last_name', nil,  {:class => "formField", :size => "20"} %>.
+      </td>
+    </tr>
+    <tr valign="top">
+      <td width="50%" class="Text13Grey">
+        Contrase&ntilde;a *<br/>
+        <%= password_field_tag 'password', nil,  {:class => "formField", :size => "20"} %>.
+        <br/>
+      </td>
+      <td width="50%" class="Text13Grey">
+        Confirmaci&oacute;n de contrase&ntilde;a *<br/>
+        <%= password_field_tag 'password_confirmation', nil,  {:class => "formField", :size => "20"} %>.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" valign="top" class="Text13Grey">
+        Acepto <a href="/web/legal">condiciones del servicio</a>
+        <input type="checkbox" name="accept_terms_of_service" id="accept_terms_of_service" class="formField"/>
+        <br /><br />
+        <%= submit_tag 'Aceptar', {:class =>"button"} %>
+    </td>
+    </tr>
+  </table>
+<%= end_form_tag %>
+<br/>

@@ -1,0 +1,32 @@
+<% cancel_options = params.merge(:controller => '/perspectives', :action => "bsc_cancel") %>
+<% create_options = params.merge(:controller => '/perspectives', :action => "bsc_create") %>
+
+<div id="bsc_detail_background">
+  <%= form_remote_tag :url => create_options,
+          :html => { :href => url_for(create_options),  :id => "create_objective" } %>
+  <div class="bsc_detail">
+    <div class="bsc_content_top">&nbsp;</div>
+    <div class="bsc_content">
+      <div class="bsc_title">
+        <div class="bsc_name">Nueva perspectiva</div>
+		<div class="bsc_close"><%= link_to_remote "cerrar",{ :url => cancel_options },{ :href => url_for(cancel_options) } %></div>
+      </div>
+      <div id="bsc_messages" class="messages-container" style="float:left;visibility:hidden;display:none;"></div>
+      <div class="bsc_pair">
+        <div class="bsc_label">Nombre:</div>
+        <div class="bsc_input"><%= text_field 'perspective', 'name' , {:class=>"text-input", :size => '50', :maxlength => '255'} %></div>
+      </div>
+      <div class="bsc_pair">
+        <div class="bsc_label">Cuadro de mando:</div>
+        <div class="bsc_value"><%= params[:area_name] %><input type="hidden" id="perspective_area_id"  name="perspective[area_id]" value="<%= params[:area_id] %>"/></div>
+      </div>
+      <div class="bsc_footer">
+        <%= submit_tag "Aceptar", :class => "submit" %>
+	  </div>
+    </div>
+    <div class="bsc_content_bottom">&nbsp;</div>
+  </div>
+  <%= end_form_tag %>
+</div>
+
+<script>makeItModal();</script>

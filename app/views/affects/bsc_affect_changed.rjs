@@ -1,0 +1,4 @@
+@objectives_to_repaint.each do |@objective|
+  page.replace "bubble#{@objective.id}", :partial => "objectives/bsc", :locals => {:obj => @objective}
+end
+

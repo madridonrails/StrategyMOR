@@ -1,0 +1,1 @@
+<%=select params[:select_object], (params[:select_attribute].nil? ? 'objective_id' : params[:select_attribute]), @objectives.collect {|p| [ p.name, p.id ]}, {:include_blank => true}, {:style => 'width:200px;'} %>

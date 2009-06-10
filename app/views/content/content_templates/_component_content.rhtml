@@ -1,0 +1,3 @@
+<div id='content_area_<%=obj_content.area rescue nil%>' class='content_holder'>
+    <%=render(:partial=>component_partial, :locals=>{:page_path=>page_path }) unless component_partial.blank?%>
+</div> <!-- id='content_area_<%=obj_content.area rescue nil%>' -->

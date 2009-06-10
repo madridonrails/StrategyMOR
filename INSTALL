@@ -1,0 +1,16 @@
+GEMAS:
+
+PLUGINS:
+
+CONFIGURACIÓN:
+
+CARGA INICIAL:
+Una vez ejecutadas las migratiosn hay que ejecutar dos tareas:
+
+> rake content:initialize_database
+
+para inicializar las tablas del gestor de páginas
+
+> rake strategygem:initialize_contents
+
+para inicializar las tablas maestras

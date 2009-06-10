@@ -1,0 +1,3 @@
+if @successful
+  page.insert_html :bottom, "bsc", :partial => 'bsc_edit'
+end

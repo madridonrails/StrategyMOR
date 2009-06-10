@@ -1,0 +1,17 @@
+<%
+#convenient javascript in case you need to use different stylesheets in different templates
+#you have to define the stylesheets as alternative in the layout then select the right one here
+#<script language="javascript">setActiveStyleSheet('styles_thin')</script>
+-%>
+
+<div id='content_page'>
+    <%= render_partial '/content/page_parts/header'%>
+    <%= render_partial '/content/page_parts/left_bar'%>
+		<div id="contenido" style="width:60%;height:400px;float:left;"> 
+			<%=get_html_content(@obj_page.page_path, 'principal') %>
+			<%if @obj_page.page_path=='/'%>	
+		    <!-- page specific content in case you need it-->
+		  <%end%>			
+		</div> <!-- contenido -->
+		<%= render_partial '/content/page_parts/right_bar'%>
+</div> <!--content_page -->

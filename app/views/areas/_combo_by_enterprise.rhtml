@@ -1,0 +1,10 @@
+<%=select 'perspective', 'area_id', @areas.collect {|p| [ p.name, p.id ]}, {:include_blank => true}, {:style => 'width:200px;'} %>
+<% if params[:select_object].blank? || params[:select_object] != 'affect' %>
+  <%= observe_field 'perspective_area_id', :url => {:controller => '/perspectives', :action => 'combo_by_area', :select_object => params[:select_object]}, :update => 'span_objective_perspective_id', :with => 'combo_area_id' %>
+  <%= observe_field 'perspective_area_id', :function => "emptySelect('initiative_objective_id')"%>
+<% else %>
+  <%= observe_field 'perspective_area_id', :url => {:controller => '/perspectives', :action => 'combo_by_area', :select_object => 'affecting'}, :update => 'span_affecting_perspective_id', :with => 'combo_area_id' %>
+  <%= observe_field 'perspective_area_id', :url => {:controller => '/perspectives', :action => 'combo_by_area', :select_object => 'affected'}, :update => 'span_affected_perspective_id', :with => 'combo_area_id' %>
+  <%= observe_field 'perspective_area_id', :function => "emptySelect('affect_affects')"%>
+  <%= observe_field 'perspective_area_id', :function => "emptySelect('affect_is_affected')"%>
+<% end %>

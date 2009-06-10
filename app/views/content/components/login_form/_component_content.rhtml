@@ -1,0 +1,37 @@
+<% unless current_user.blank? || true %>
+<% else %>
+  <div class="Title14Orange"><img alt="Icon-arrow2" src="/images/icon-arrow2.gif"/>&nbsp;Acceso</div>
+  <div id="divider"><img alt="Px" src="/images/px.gif"/s></div>
+  <div id="message_area" class="Title14Orange" style="display:none;"><%= flash[:error] %><%= flash[:notice] %></div>  
+  <% if account_subdomain != 'www' %>
+  <%= form_tag url_for(:controller => 'account', :action => 'login') %>
+    <br/>
+    <table width="500px" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td class="Text13Grey">
+          Email*<br/>
+          <%= text_field_tag 'email', nil,  {:class => "formField"} %>
+          <br/>
+        </td>
+      </tr>
+      <tr>
+        <td class="Text13Grey">
+          Contrase&ntilde;a*<br/>
+          <input class="formField" id="password" name="password" type="password" />
+          <br/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="CellTablebuttonL">
+            <br/><%= submit_tag 'Aceptar', {:class =>"button"} %>
+          </span>
+        </td>
+      </tr>
+    </table>
+  <%= end_form_tag %>
+  <% else %>
+    <%=get_html_content(@obj_page.page_path, 'texto_error') %>
+  <% end %>
+<% end %>
+

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Templates imagesBasePath="fck_template/images/">
+	<Template title="Lista tipo A">
+		<Description>Texto + opciones</Description>
+		<Html>
+			<![CDATA[
+    <p class="Title18Grey">Texto:</p>
+    <table width="500" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="13"><img alt="&gt;" src="/images/icon-arrow.gif" /></td>
+        <td class="Title14Orange">Opci&oacute;n A</td>
+      </tr>
+      <tr>
+        <td width="13">&nbsp;</td>
+        <td class="Text13Grey" align="left">blah blah blah</td>
+      </tr>
+    </table>
+    <br />
+    <table width="500" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="13"><img alt="&gt;" height="13" src="/images/icon-arrow.gif" /></td>
+        <td class="Title14Orange">Opci&oacute;n B</td>
+      </tr>
+      <tr>
+        <td width="13">&nbsp;</td>
+        <td class="Text13Grey" align="left">blah blah blah</td>
+      </tr>
+    </table>
+      ]]>
+		</Html>
+	</Template>
+	<Template title="Reclamo para la home">
+		<Description>Claim</Description>
+		<Html>
+			<![CDATA[
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" width="53%">
+      <p class="Title48DarkGrey">Claim</p>
+      <p class="Text24Grey">Texto</p>
+      <p class="TextHighlightOrange"><a href="/web/signup">Enlace</a></p>
+    </td>
+    <td width="47%">
+      <a href="/web/tour"><img alt="foto principal" src="/images/foto_principal.gif"/></a>
+    </td>
+  </tr>
+</table>
+      ]]>
+		</Html>
+	</Template>
+	<Template title="Triptico para la home">
+		<Description>Triptico</Description>
+		<Html>
+			<![CDATA[
+<table width="745" border="0" cellspacing="10" cellpadding="0">
+  <tr>
+    <td valign="top" align="left">
+      <img alt="Icon-arrow" src="/images/icon-arrow2.gif" />
+      <span class="Title18DarkGrey">Actividad 1</span>
+      <br />
+      <img alt="Detail01" class="imgBorder01" src="/images/detail01.jpg" />
+      <span class="Title14Orange">Claim 1</span>
+      <br />
+      <span class="Text13Grey">Texto 1</span>
+    </td>
+    <td valign="top" align="left">
+      <img alt="Icon-arrow" src="/images/icon-arrow2.gif" />
+      <span class="Title18DarkGrey">Actividad 2</span>
+      <br />
+      <img alt="Detail01" class="imgBorder01" src="/images/detail01.jpg" />
+      <span class="Title14Orange">Claim 2</span>
+      <br />
+      <span class="Text13Grey">Texto 2</span>
+    </td>
+    <td valign="top" align="left">
+      <img alt="Icon-arrow" src="/images/icon-arrow2.gif" />
+      <span class="Title18DarkGrey">Actividad 3</span>
+      <br />
+      <img alt="Detail01" class="imgBorder01" src="/images/detail01.jpg" />
+      <span class="Title14Orange">Claim 3</span>
+      <br />
+      <span class="Text13Grey">Texto 3</span>
+    </td>
+  </tr>
+</table>
+      ]]>
+		</Html>
+	</Template>
+</Templates>

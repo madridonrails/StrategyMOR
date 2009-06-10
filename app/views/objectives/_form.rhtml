@@ -1,0 +1,111 @@
+<input type="hidden" id="objective_creator" name="objective[creator]" value="<%= current_user.id %>"/>
+<fieldset>
+  <div class="row">
+    <% if current_user && !current_user.nil? && current_user.profile.privilege1 == 'X'%>
+    <div class="form-element">
+      <label for="area_enterprise_id">Empresa</label>
+      <%= select 'area', 'enterprise_id' , Enterprise.find_all.collect {|p| [ p.name, p.id ] }, 
+	    { :include_blank => ((params[:action] == 'edit') ? false : true),
+		  :selected => ((params[:action] == 'edit') ? @objective.perspective.area.enterprise_id : nil) }, 
+		{:style => 'width:200px;'} %>
+    </div>
+    <%= observe_field 'area_enterprise_id', :url => {:controller => '/areas', :action => 'combo_by_enterprise', :select_object => 'objective'}, :update => 'span_perspective_area_id', :with => 'combo_enterprise_id' %>
+    <%= observe_field 'area_enterprise_id', :url => {:controller => '/users', :action => 'combo_by_enterprise_and_privilege', :select_object => 'objective', :select_attribute => 'updater', :select_privilege => 6, :select_privilege_values => "X','E','A','O"}, :update => 'span_objective_updater', :with => 'combo_enterprise_id' %>
+    <%= observe_field 'area_enterprise_id', :function => "emptySelect('objective_perspective_id')"%>
+    <% end %>
+  
+    <div class="form-element">
+      <label for="objective_updater">Responsable</label>
+	  <span id="span_objective_updater">
+      <% if current_user && !current_user.nil? && current_user.profile.privilege1 == 'X'%>
+        <%= select 'objective', 'updater' , 
+		  ((params[:action] == 'edit') ? User.find_by_enterprise_and_privilege(@objective.perspective.area.enterprise_id, 6, ['X','E','A','O']).collect {|p| [ p.full_name, p.id ] } : []),
+		  (params[:action] == 'edit') ? {:selected => @objective.updater} : {:include_blank => true}, 
+		  {:style => 'width:200px;'} %>
+      <% elsif current_user && !current_user.nil? && (current_user.profile.privilege6 == 'O') %>
+        <label id="objective_updater"><%= current_user.full_name %></label>
+        <input type="hidden" id="objective_updater" name="objective[updater]" value="<%= current_user[:id] %>"/>
+      <% else %>
+        <%= select 'objective', 'updater' , User.find_by_enterprise_and_privilege(current_user.enterprise_id, 6, ['X','E','A','O']).collect {|p| [ p.full_name, p.id ] },
+		  {:include_blank => ((params[:action] == 'edit') ? false : true), :selected => ((params[:action] == 'edit') ? @objective.updater : nil)}, 
+		  {:style => 'width:200px;'} %>
+      <% end %>
+	  </span>
+    </div>
+    <div class="form-element">
+      <label for="objective_period_id">Periodicidad</label>
+      <%= select 'objective', 'period_id' , Period.find_all.collect {|p| [ p.full_name, p.id ] }, {}, {:style => 'width:200px;'} %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-element">
+      <label for="perspective_area_id">Cuadro de mando</label>
+	  <span id="span_perspective_area_id">
+      <% if current_user && !current_user.nil? && current_user.profile.privilege5 == 'X'%>
+        <%= select 'perspective', 'area_id' , 
+		  ((params[:action] == 'edit') ? Area.find(:all, :conditions => ['enterprise_id = ?', @objective.perspective.area.enterprise_id]).collect {|p| [ p.name, p.id ] } : []), 
+		  {:selected => ((params[:action] == 'edit') ? @objective.perspective.area_id : nil) },
+          {:style => 'width:200px;'} %>
+	  <% elsif current_user && !current_user.nil? && current_user.profile.privilege5 == 'E'%>
+        <%= select 'perspective', 'area_id' , Area.find(:all, :conditions => ['enterprise_id = ?', current_user.enterprise_id]).collect {|p| [ p.name, p.id ] },
+		  {:include_blank => ((params[:action] == 'edit') ? false : true), :selected => ((params[:action] == 'edit') ? @objective.perspective.area_id : nil) }, 
+		  {:style => 'width:200px;'} %>
+	  <% elsif current_user && !current_user.nil? && current_user.profile.privilege5 == 'A'%>
+        <%= select 'perspective', 'area_id' , Area.find(:all, :conditions => ['enterprise_id = ? && owner = ?', current_user.enterprise_id, current_user[:id]]).collect {|p| [ p.name, p.id ] },
+		  {:include_blank => ((params[:action] == 'edit') ? false : true), :selected => ((params[:action] == 'edit') ? @objective.perspective.area_id : nil) }, 
+		  {:style => 'width:200px;'} %>
+      <% elsif current_user && !current_user.nil? && (current_user.profile.privilege6 == 'O') %>
+        <label id="perspective_area_id"><%= @objective.perspective.area.name %></label>
+        <input type="hidden" id="perspective_area_id" name="perspective[area_id]" value="<%= @objective.perspective.area_id %>"/>
+      <% end %>
+	  </span>
+    </div>
+    <%= observe_field 'perspective_area_id', :url => {:controller => '/perspectives', :action => 'combo_by_area', :select_object => 'objective'}, :update => 'span_objective_perspective_id', :with => 'combo_area_id' %>
+
+    <div class="form-element">
+      <label for="objective_perspective_id">Perspectiva</label>
+	  <span id="span_objective_perspective_id">
+      <% if current_user && !current_user.nil? && (current_user.profile.privilege6 == 'X' || current_user.profile.privilege6 == 'E' || current_user.profile.privilege6 == 'A') %>
+        <%= select 'objective', 'perspective_id' , 
+	      ((params[:action] == 'edit') ? Perspective.find(:all, :conditions => ['area_id = ?', @objective.perspective.area_id]).collect {|p| [ p.name, p.id ] } : []), {:include_blank => ((params[:action] == 'edit') ? false : true)}, {:style => 'width:200px;'}%>
+      <% elsif current_user && !current_user.nil? && (current_user.profile.privilege6 == 'O') %>
+        <label id="perspective_area_id"><%= @objective.perspective.name %></label>
+        <input type="hidden" id="perspective_area_id" name="perspective[area_id]" value="<%= @objective.perspective.area_id %>"/>
+      <% end %>
+	  </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-element">
+      <label for="objective_name">Nombre</label>
+      <%= text_field 'objective', 'name' , {:class=>"text-input", :size => '50', :maxlength => '255'} %>
+    </div>
+    <div class="form-element">
+      <label for="objective_lower_limit">L&iacute;mite inferior</label>
+      <%= text_field 'objective', 'lower_limit' , {:class=>"text-input", :size => '10', :maxlength => '15'} %>
+    </div>
+    <div class="form-element">
+      <label for="objective_target">Meta</label>
+      <%= text_field 'objective', 'target' , {:class=>"text-input", :size => '10', :maxlength => '15'} %>
+    </div>
+    <div class="form-element">
+      <label for="objective_upper_limit">L&iacute;mite superior</label>
+      <%= text_field 'objective', 'upper_limit' , {:class=>"text-input", :size => '10', :maxlength => '15'} %>
+    </div>
+    <div class="form-element">
+      <label for="objective_value">Valor</label>
+      <%= text_field 'objective', 'value' , {:class=>"text-input", :size => '10', :maxlength => '15'} %>
+    </div>
+    <div class="form-element">
+      <label for="objective_symbol">Etiqueta</label>
+      <%= text_field 'objective', 'symbol' , {:class=>"text-input", :size => '5', :maxlength => '25'} %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-element">
+      <label for="objective_description">Descripci&oacute;n</label>
+      <%= text_area 'objective', 'description' , {:class=>"text-input"} %>
+    </div>
+  </div>
+</fieldset>

@@ -1,0 +1,75 @@
+<% if @show_wrapper %>
+  <div id="topPage">&nbsp;</div>
+  <div id="middlePage" id="<%= scaffold_content_id(params) %>">
+<% end %>
+    <% if current_user && !current_user.nil? %>
+      <% if current_user.profile_id == BscgemUtils.profile('master') %>
+        <% new_params = params.merge(:controller => '/objectives', :action => 'new') %>
+        <%= loading_indicator_tag(new_params) %>
+        <%= link_to_remote 'a&ntilde;adir objetivo&nbsp;' + image_tag("icons/icon-add.gif", :title => 'a&ntilde;adir', :alt=>'a&ntilde;adir', :vspace => '5', :border => '0', :align => 'absmiddle'),
+        { :url => new_params,
+          :loading => "Element.show('#{loading_indicator_id(new_params)}');" },
+        { :href => url_for(new_params),
+          :class => "botonerasup" } %>
+      <% elsif current_user.profile_id == BscgemUtils.profile('enterprise manager') || current_user.profile_id == BscgemUtils.profile('dashboard manager') %>
+        <% if !params[:which_ones].blank? && params[:which_ones] != 'all' %>
+          <% view_params = params.merge(:controller => '/objectives', :action => 'component_update', :which_ones => 'all') %>
+          <%= loading_indicator_tag(view_params) %>
+          <%= link_to_remote 'Todos los objetivos&nbsp;' + image_tag("icons/icon-list.gif", :title => 'ver', :alt=>'ver', :vspace => '5', :border => '0', :align => 'absmiddle'),
+          { :url => view_params,
+            :loading => "Element.show('#{loading_indicator_id(view_params)}');",
+            :update => scaffold_content_id(view_params)},
+          { :href => url_for(view_params),
+            :class => "botonerasup" }%>
+        <% end %>          
+        <% if params[:which_ones].blank? || params[:which_ones] != 'mine' %>
+          <% view_params = params.merge(:controller => '/objectives', :action => 'component_update', :which_ones => 'mine') %>
+          <%= loading_indicator_tag(view_params) %>
+          <%= link_to_remote 'Mis objetivos&nbsp;' + image_tag("icons/icon-mine.gif", :title => 'ver', :alt=>'ver', :vspace => '5', :border => '0', :align => 'absmiddle'),
+          { :url => view_params,
+            :loading => "Element.show('#{loading_indicator_id(view_params)}');",
+            :update => scaffold_content_id(view_params)},
+          { :href => url_for(view_params),
+            :class => "botonerasup" }%>
+        <% end %>          
+        <% if false && (params[:which_ones].blank? || params[:which_ones] != 'pending') %>
+          <% view_params = params.merge(:controller => '/objectives', :action => 'component_update', :which_ones => 'pending') %>
+          <%= loading_indicator_tag(view_params) %>
+          <%= link_to_remote 'Objetivos sin actualizar&nbsp;' + image_tag("icons/icon-pending.gif", :title => 'ver', :alt=>'ver', :vspace => '5', :border => '0', :align => 'absmiddle'),
+          { :url => view_params,
+            :loading => "Element.show('#{loading_indicator_id(view_params)}');",
+            :update => scaffold_content_id(view_params)},
+          { :href => url_for(view_params),
+            :class => "botonerasup" }%>
+        <% end %>          
+      <% end %>          
+    <% end %>
+         
+    <table width="700px" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+      <%= render :partial => 'shared/column_headings', :locals => { :control => 'objectives' } %>
+      </tr>
+      <tbody>
+        <tr>
+          <td colspan="<%= num_columns %>" class="messages-container">
+            <div id="<%= scaffold_messages_id(params) %>">
+            <%= render :partial => 'messages' %>
+            </div>
+            <p id="<%= empty_message_id(params) %>" class="empty-message" <%= " style=\"display:none;\" " if !@objectives.empty? %>>
+              No existen objetivos
+            </p>
+          </td>
+        </tr>
+      </tbody>
+      <tbody id="<%= scaffold_tbody_id(params) %>">
+      <% if !@objectives.empty? %>
+        <%= render :partial => 'objective', :collection => @objectives, :locals => { :hidden => false } %>
+      <% end %>
+      <%= render :partial => 'shared/pagination_links', :locals => { :paginator => @paginator, :control => 'objectives' } %>
+      </tbody>
+    </table>
+<% if @show_wrapper %>
+  </div>
+  <div id="bottPage">&nbsp;</div>
+<% end %>
+	  

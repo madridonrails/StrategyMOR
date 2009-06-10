@@ -1,0 +1,19 @@
+      <div id="header2">
+        <div id="headerleft">
+          <a href="/web/index"><img alt="<%=APP_NAME%>" src="/images/logo.png" title="<%=APP_NAME%>" /></a>
+        </div>
+        <div id="headerright2">
+          <ul>
+            <li><a href="/web/index">INICIO</a></li>
+            <!--li><a href="/web/tour">TOUR</a></li-->
+            <li><a href="/web/help">AYUDA</a></li>
+            <li><a href="/web/contact">CONTACTO</a></li>
+            <% if !logged_in? || current_user.profile_id == BscgemUtils.profile('master') %>
+            <li><a href="/web/register">REGISTRO</a></li>
+            <li><a href="/web/login">LOGIN</a></li>
+            <% else %>
+            <li><a href="/account">ACCESO</a></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>

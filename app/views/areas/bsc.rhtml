@@ -1,0 +1,37 @@
+<% require_bundle :dynarch_calendar %>
+
+<%
+perspective_options = params.merge(:controller => '/perspectives', :action => "bsc_new", :area_id => @area.id, :area_name => @area.name)
+dnd_objective_options = params.merge(:controller => '/objectives', :action => "bsc_dnd_to_perspective")
+dnd_perspective_options = params.merge(:controller => '/perspectives', :action => "bsc_dnd_to_bsc")
+dnd_affects_options = params.merge(:controller => '/affects', :action => "bsc_dnd_affects")
+%>
+  <div id="topPage">&nbsp;</div>
+  <div id="middlePage" id="<%= scaffold_content_id(params) %>">
+    <div id="bsc">
+
+      <div id="bsc-title">Cuadro de Mando - <%= @area.name %></div><div class="bsc-actions"><%= link_to_remote "[a&ntilde;adir&nbsp;perspectiva]", { :url => perspective_options}, { :href => url_for(perspective_options) } %></div>
+      <%= form_remote_tag :url => dnd_objective_options, :html => { :href => url_for(dnd_objective_options),  :id => "dnd_objective_form" } %>
+      <input type="hidden" id="dnd_obj_objective_id" name="dnd_obj_objective_id"/>
+      <input type="hidden" id="dnd_obj_perspective_id" name="dnd_obj_perspective_id"/>
+      <input type="hidden" id="dnd_obj_before" name="dnd_obj_before"/>
+      <%= end_form_tag %>
+      <%= form_remote_tag :url => dnd_perspective_options, :html => { :href => url_for(dnd_perspective_options),  :id => "dnd_perspective_form" } %>
+      <input type="hidden" id="dnd_persp_perspective_id" name="dnd_persp_perspective_id"/>
+      <input type="hidden" id="dnd_persp_before" name="dnd_persp_before"/>
+      <%= end_form_tag %>
+      <%= form_remote_tag :url => dnd_affects_options, :html => { :href => url_for(dnd_affects_options),  :id => "dnd_affects_form" } %>
+      <input type="hidden" id="dnd_affects" name="dnd_affects"/>
+      <input type="hidden" id="dnd_is_affected" name="dnd_is_affected"/>
+      <%= end_form_tag %>
+      
+      <% if !@area.perspectives.empty?
+      @area.perspectives.each do |p|%>
+          <%= render( :partial => 'perspectives/bsc', :locals => {:persp => p}) %> 
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
+  <div id="bottPage">&nbsp;</div>
+  <div id="flyinburrito">volando</div>

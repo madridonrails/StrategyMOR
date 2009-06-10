@@ -1,0 +1,8 @@
+        <div class="Title24Orange" id="titlearea"><%=get_html_content(@obj_page.page_path, 'titulo') %></div>
+        <div id="highlightareaAyuda">
+          <div id="cleararea">
+            <%=get_html_content(@obj_page.page_path, 'texto') %>
+            <br/><hr/>
+            <%=get_component('forgot_form')%>
+          </div>
+        </div>

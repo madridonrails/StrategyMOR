@@ -1,0 +1,75 @@
+<fieldset>
+  <div class="row">
+    <% if current_user && !current_user.nil? && current_user.profile_id == BscgemUtils.profile('master')%>
+    <div class="form-element">
+      <label for="area_enterprise_id">Empresa</label>
+      <%= select 'area', 'enterprise_id' , Enterprise.find_all.collect {|p| [ p.name, p.id ] }, 
+	    { :include_blank => ((params[:action] == 'edit') ? false : true),
+		  :selected => ((params[:action] == 'edit') ? @affect.affected.perspective.area.enterprise_id : nil) }, {:style => 'width:200px;'} %>
+    </div>
+    <%= observe_field 'area_enterprise_id', :url => {:controller => '/areas', :action => 'combo_by_enterprise', :select_object => 'affect'}, :update => 'span_perspective_area_id', :with => 'combo_enterprise_id' %>
+    <%= observe_field 'area_enterprise_id', :function => "emptySelect('affecting_perspective_id')"%>
+    <%= observe_field 'area_enterprise_id', :function => "emptySelect('affected_perspective_id')"%>
+    <%= observe_field 'area_enterprise_id', :function => "emptySelect('affect_affects')"%>
+    <%= observe_field 'area_enterprise_id', :function => "emptySelect('affect_is_affected')"%>
+    <% end %>
+
+    <div class="form-element">
+      <label for="perspective_area_id">Cuadro de mando</label>
+	  <span id="span_perspective_area_id">
+      <% if current_user && !current_user.nil? && current_user.profile_id == BscgemUtils.profile('master')%>
+        <%= select 'perspective', 'area_id' , 
+		  ((params[:action] == 'edit') ? Area.find(:all, :conditions => ['enterprise_id = ?', @affect.affected.perspective.area.enterprise_id]).collect {|p| [ p.name, p.id ] } : []), 
+		  {:selected => ((params[:action] == 'edit') ? @affect.affected.perspective.area_id : nil) }, {:style => 'width:200px;'}%>
+	  <% else %>
+        <%= select 'perspective', 'area_id' , Area.find(:all, :conditions => ['enterprise_id = ?', current_user.enterprise_id]).collect {|p| [ p.name, p.id ] },
+		  {:include_blank => ((params[:action] == 'edit') ? false : true), :selected => ((params[:action] == 'edit') ? @affect.affected.perspective.area_id : nil) }, {:style => 'width:200px;'} %>
+      <% end %>
+	  </span>
+    </div>
+    <%= observe_field 'perspective_area_id', :url => {:controller => '/perspectives', :action => 'combo_by_area', :select_object => 'affecting'}, :update => 'span_affecting_perspective_id', :with => 'combo_area_id' %>
+    <%= observe_field 'perspective_area_id', :url => {:controller => '/perspectives', :action => 'combo_by_area', :select_object => 'affected'}, :update => 'span_affected_perspective_id', :with => 'combo_area_id' %>
+    <%= observe_field 'perspective_area_id', :function => "emptySelect('affect_affects')"%>
+    <%= observe_field 'perspective_area_id', :function => "emptySelect('affect_is_affected')"%>
+
+  </div>
+  <div class="row">
+    <div class="form-element">
+      <label for="objective_perspective_id">Perspectiva 1</label>
+	  <span id="span_affected_perspective_id">
+      <%= select 'affected', 'perspective_id' , 
+	    ((params[:action] == 'edit') ? Perspective.find(:all, :conditions => ['area_id = ?', @affect.affected.perspective.area_id]).collect {|p| [ p.name, p.id ] } : []), 
+		{:selected => ((params[:action] == 'edit') ? @affect.affected.perspective_id : nil) }, {:style => 'width:200px;'} %>
+	  </span>
+    </div>
+    <%= observe_field 'affected_perspective_id', :url => {:controller => '/objectives', :action => 'combo_by_perspective', :select_object => 'affect', :select_attribute => 'is_affected'}, :update => 'span_affect_affected', :with => 'combo_perspective_id' %>
+
+    <div class="form-element">
+      <label for="affect_is_affected">Objetivo</label>
+	  <span id="span_affect_affected">
+      <%= select 'affect', 'is_affected' , 
+	    ((params[:action] == 'edit') ? Objective.find(:all, :conditions => ['perspective_id = ?', @affect.affected.perspective_id]).collect {|p| [ p.name, p.id ] } : []), {:include_blank => ((params[:action] == 'edit') ? false : true)}, {:style => 'width:200px;'} %>
+	  </span>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="form-element">
+      <label for="objective_perspective_id">Perspectiva 2</label>
+	  <span id="span_affecting_perspective_id">
+      <%= select 'affecting', 'perspective_id' , 
+	    ((params[:action] == 'edit') ? Perspective.find(:all, :conditions => ['area_id = ?', @affect.affecting.perspective.area_id]).collect {|p| [ p.name, p.id ] } : []), 
+		{:selected => ((params[:action] == 'edit') ? @affect.affecting.perspective_id : nil) }, {:style => 'width:200px;'} %>
+	  </span>
+    </div>
+    <%= observe_field 'affecting_perspective_id', :url => {:controller => '/objectives', :action => 'combo_by_perspective', :select_object => 'affect', :select_attribute => 'affects'}, :update => 'span_affect_affecting', :with => 'combo_perspective_id' %>
+
+    <div class="form-element">
+      <label for="affect_affects">Depende de</label>
+	  <span id="span_affect_affecting">
+      <%= select 'affect', 'affects' , 
+	    ((params[:action] == 'edit') ? Objective.find(:all, :conditions => ['perspective_id = ?', @affect.affecting.perspective_id]).collect {|p| [ p.name, p.id ] } : []), {:include_blank => ((params[:action] == 'edit') ? false : true)}, {:style => 'width:200px;'} %>
+	  </span>
+    </div>
+  </div>
+</fieldset>

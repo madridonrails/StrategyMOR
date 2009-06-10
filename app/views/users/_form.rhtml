@@ -1,0 +1,40 @@
+<fieldset>
+  <div class="row">
+    <div class="form-element">
+      <label for="user_first_name">Nombre</label>
+      <%= text_field 'user', 'first_name' , {:class=>"text-input", :size => '50', :maxlength => '255'} %>
+    </div>
+    <div class="form-element">
+      <label for="user_last_name">Apellidos</label>
+      <%= text_field 'user', 'last_name' , {:class=>"text-input", :size => '50', :maxlength => '255'} %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-element">
+      <label for="user_last_name">Perfil</label>
+      <%= select 'user', 'profile_id' , Profile.find(:all, :conditions => ['id >= ?', current_user.profile_id]).collect {|p| [ p.name, p.id ] }, {}, {:style => 'width:200px;'} %>
+    </div>
+    <% if current_user && !current_user.nil? && current_user.profile_id == BscgemUtils.profile('master')%>
+    <div class="form-element">
+      <label for="user_last_name">Empresa</label>
+        <%= select 'user', 'enterprise_id' , Enterprise.find_all.collect {|p| [ p.name, p.id ] }, {}, {:style => 'width:200px;'} %>
+    </div>
+	<% else %>
+        <input type="hidden" id="user_enterprise_id" name="user[enterprise_id]" value="<%=current_user.enterprise_id%>"/>
+	<% end %>
+  </div>
+  <div class="row">
+    <div class="form-element">
+      <label for="user_last_name">e-mail</label>
+      <%= text_field 'user', 'email' , {:class=>"text-input", :size => '50', :maxlength => '255'} %>
+    </div>
+    <div class="form-element">
+      <label for="user_password">Password</label>
+      <%= password_field 'user', 'password' , {:class=>"text-input", :size => '15', :maxlength => '40'} %>
+    </div>
+    <div class="form-element">
+      <label for="user_password">Confirmaci&oacute;n</label>
+      <%= password_field 'user', 'password_confirmation' , {:class=>"text-input", :size => '15', :maxlength => '40'} %>
+    </div>
+  </div>
+</fieldset>

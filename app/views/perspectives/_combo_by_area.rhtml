@@ -1,0 +1,10 @@
+<%=select (params[:select_object] == 'objective' || params[:select_object] == 'initiative' || params[:select_object] == 'checkpoint') ? 'objective' : params[:select_object], 'perspective_id', @perspectives.collect {|p| [ p.name, p.id ]}, {:include_blank => true}, {:style => 'width:200px;'} %>
+<% if params[:select_object] == 'objective' || params[:select_object] == 'initiative' || params[:select_object] == 'checkpoint' %>
+  <%= observe_field 'objective_perspective_id', :url => {:controller => '/objectives', :action => 'combo_by_perspective', :select_object => params[:select_object]}, :update => 'span_objective_id', :with => 'combo_perspective_id' %>
+<% else %>
+  <%= observe_field (params[:select_object] + '_perspective_id'), 
+    :url => {:controller => '/objectives', :action => 'combo_by_perspective', :select_object => 'affect', 
+	  :select_attribute => ((params[:select_object] == 'affecting') ? 'affects' : 'is_affected')}, 
+	:update => ('span_affect_' + params[:select_object]), 
+	:with => 'combo_perspective_id' %>
+<% end %>

@@ -1,0 +1,33 @@
+<%
+affecting_array = Array.new
+for o in obj.affecting_objectives
+  affecting_array << o.affects
+end
+
+affected_array = Array.new
+for o in obj.affected_objectives
+  affected_array << o.is_affected
+end
+
+params.delete("objective")
+params.delete("commit")
+view_objective_options = params.merge(:controller => '/objectives', :action => "bsc_view", :id => obj.id)
+edit_objective_options = params.merge(:controller => '/objectives', :action => "bsc_edit", :id => obj.id)
+destroy_objective_options = params.merge(:controller => '/objectives', :action => "bsc_destroy", :id => obj.id)
+          
+%>
+	<div id="bubble<%= obj.id %>" class="bubble">
+      <div class="bubbletop">
+        <div class="bubbletitle" id="bubbletitle<%= obj.id %>"><%= link_to_remote obj.name, { :url => edit_objective_options}, { :href => url_for(edit_objective_options), :title => "Ver detalle" } %></div>
+	  </div>
+      <div class="bubblecontent">
+	    <div class="bubblecurrentvalue"><%= link_to_remote obj.value, { :url => view_objective_options}, { :href => url_for(view_objective_options) , :title => "Editar objetivo" } %><%= (obj.symbol.blank? ? '' : ('&nbsp;' + obj.symbol)) %></div>
+	    <div class="bubblesemaphore"><%= objective_status_img (obj) %></div>
+	    <div class="bubbletarget"><%= obj.target %><%= (obj.symbol.blank? ? '' : ('&nbsp;' + obj.symbol)) %></div>
+	  </div>
+      <div class="bubblefootleft"><%= link_to_remote (image_tag('borrar.gif', :id => 'borrar', :alt=>"borrar", :title=>"borrar", :class=>"bubbleicon", :border => "0" ), 
+   	                        {:url=>destroy_objective_options, :confirm => 'Esta seguro?'},
+   	                        {:href=>url_for(destroy_objective_options)}) %></div>
+      <div class="bubblefootright"><a href="ver relaciones" onclick="return false" onmouseover="lighten([<%= affected_array.join(",") %>]);" onmouseout="darken([<%= affected_array.join(",") %>]);" title="Los objetivos a los que afecta cambian de color">afecta a</a>&nbsp;|&nbsp<a href="ver relaciones" onclick="return false" onmouseover="lighten([<%= affecting_array.join(",") %>]);" onmouseout="darken([<%= affecting_array.join(",") %>]);" title="Los objetivos que le afectan cambian de color">afectado por</a></div>
+	</div>
+

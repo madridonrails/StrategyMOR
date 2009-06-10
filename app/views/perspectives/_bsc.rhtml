@@ -1,0 +1,23 @@
+<%
+params.delete("objective")
+params.delete("commit")
+
+objective_options = params.merge(:controller => '/objectives', :action => "bsc_new", :perspective_id => persp.id, :perspective_name => persp.name)
+perspective_options = params.merge(:controller => '/perspectives', :action => "bsc_destroy", :id => persp.id)
+%>
+   <div id="perspective<%= persp.id %>" class="perspective">
+    <div id="perspective-title<%= persp.id %>" class="perspective-title"><%= persp.name %></div>
+    <div class="perspective-title-right">&nbsp;</div>
+    <div class="perspective-actions"><%= link_to_remote "[a&ntilde;adir&nbsp;objetivo]", { :url => objective_options}, { :href => url_for(objective_options) } %><%= link_to_remote "[eliminar&nbsp;perspectiva]", { :url => perspective_options, :confirm => 'Esta seguro?'}, { :href => url_for(perspective_options) } %></div>
+    <div id="perspective-content<%= persp.id %>" class="perspective-content">
+
+	<% if (!persp.objectives.empty?)
+	  persp.objectives.each do |o| %>
+        <%= render :partial => 'objectives/bsc', :locals => {:obj => o} %>
+      <% end
+    else %>
+	  <div class="perspective-empty">Esta perspectiva no contiene objetivos.<br/>Pulse [a&ntilde;adir objetivo] para crear un objetivo en esta perspectiva.</div>
+	<% end %>
+
+	</div>	
+   </div>

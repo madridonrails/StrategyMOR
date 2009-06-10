@@ -1,0 +1,9 @@
+        <div class="Title24Orange" id="titlearea"><%= get_html_content(@obj_page.page_path, 'titulo') %></div>
+        <div id="highlightareaAyuda">
+          <div id="textareaAyuda">
+            <span class="Title18OrangeHelp"><%= get_html_content(@obj_page.page_path, 'seccion') %></span>
+            <%= render :partial => '/content/page_parts/faq_sublist' %>
+            <br/>
+            <span class="Text13GreyHelp"><%= link_to('volver a la ayuda', {:controller => 'content', :action => 'display_content_page', :page_path => @obj_page.parent.parent.page_path}) %></span>
+          </div>
+        </div>

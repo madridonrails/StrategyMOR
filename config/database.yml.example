@@ -1,0 +1,23 @@
+development:
+  adapter: mysql
+  database: strategygem_development
+  username: strategygem
+  password: strategygem
+  host: localhost
+  encoding: utf8
+
+test:
+  adapter: mysql
+  database: strategygem_test
+  username: strategygem
+  password: strategygem
+  host: localhost
+  encoding: utf8
+
+production:
+  adapter: mysql
+  database: strategygem_production
+  username: strategygem
+  password: strategygem
+  host: localhost
+  encoding: utf8

@@ -1,0 +1,29 @@
+<html>
+<head>
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag :fckeditor %> 
+<%= content_include_tag %> 
+</head>
+<body>
+<%= form_remote_tag :url => { :action => 'html_content_update', :id => @html_content},            
+            :before => "#{fckeditor_before_js('obj_content', 'content')}",
+            :success =>"Content.parent_content_from_remote('content_area_#{@obj_content.area}',request);Content.close_focused(true)",
+            :failure => "alert('se produjo un error de comunicación con el servidor')"  %>
+        <%=hidden_field_tag 'obj_content[content_page_id]', @obj_content.content_page_id %>
+        <%=hidden_field 'obj_content', 'area' %>
+        <%=hidden_field 'obj_content', 'id' %>        
+        <div style='height:420px;width:100%'>
+        <%= fckeditor_textarea( 'obj_content', 'content', :ajax => true, :toolbarSet =>'content' ) %>         
+        </div>
+        <%=submit_tag 'Aceptar', :class=>'boton'%>
+        <%=button_to_function('Cancelar', 'Content.close_focused(false)', :class=>'boton') %>
+        
+        &nbsp;<%=link_to 'Recuperar Versión ' + (@obj_content.version==1 ? 'Anterior' : 'Actual'), 
+              {:action=>'html_content_edit',:page_path=>@obj_content.content_page.page_path, 
+                 :area=>@obj_content.area, :version=>(@obj_content.version==1 ? 0 : 1)}%>
+<% end_form_tag %>
+</body>
+</html>
+
+
+

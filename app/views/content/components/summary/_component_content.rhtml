@@ -1,0 +1,50 @@
+<%
+  path_split = @obj_page.page_path.split('/')
+  n_path_split = path_split.size
+  if @obj_page.title == 'index'
+    parent_path = path_split[0..(n_path_split-3)].join('/')
+  else
+    parent_path = path_split[0..(n_path_split-2)].join('/')
+  end
+  
+  if n_path_split > 3 || (n_path_split == 3 && path_split[2] != 'index')
+    %>
+    <div style="float:right"><a class="Title13Grey" href="/web<%= parent_path %>">ir al nivel superior</a></div>
+    <br/><br/>
+    <%
+  end
+  
+  sections = child_section_list(@obj_page.parent_id) 
+  pages = @obj_page.page_siblings 
+  if !sections.empty?
+    sections.each do |p|
+      t = HtmlContent.get_by_page_path_and_area(p.page_path + '/index', 'titulo', content_language) 
+      %>
+        <a class="Title14Orange" href="/web<%= p.normalize_path %>">&bull;&nbsp;<%= (!t.nil? && t.content != '') ? t.content : p.title %></a><br/><br/>
+      <%
+      p.child_pages.each do |cp|
+        if cp.title != 'index'
+          ct = HtmlContent.get_by_page_path_and_area(cp.page_path, 'titulo', content_language) 
+          %>
+            <a href="/web<%= cp.normalize_path %>" class="Text13Grey">&bull;&nbsp;<%= (!ct.nil? && ct.content != '') ? ct.content : cp.title %></a><br/>
+          <%
+        end
+      end
+      %><br/><%
+    end  
+  elsif !pages.empty? && path_split[n_path_split-1] == 'index'
+    pages.each do |p|
+      if p.title != 'index'
+        t = HtmlContent.get_by_page_path_and_area(p.page_path, 'titulo', content_language)
+        %>
+          <a href="/web<%= p.normalize_path %>" class="Title13Grey">&bull;&nbsp;<%= (!t.nil? && t.content != '') ? t.content : p.title %></a><br/>
+        <%
+      end
+    end
+  else
+    %>
+      <%=get_html_content(@obj_page.page_path, 'texto') %>
+    <%
+  end
+%>
+<br/>

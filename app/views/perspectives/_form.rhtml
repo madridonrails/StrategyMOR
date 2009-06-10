@@ -1,0 +1,39 @@
+<fieldset>
+  <div class="row">
+    <% if current_user && !current_user.nil? && current_user.profile.privilege1 == 'X'%>
+    <div class="form-element">
+      <label for="area_enterprise_id">Empresa</label>
+      <%= select 'area', 'enterprise_id' , Enterprise.find_all.collect {|p| [ p.name, p.id ] }, 
+	    { :include_blank => ((params[:action] == 'edit') ? false : true), 
+		  :selected => ((@perspective && !@perspective.nil? && !@perspective.area.nil?) ? @perspective.area.enterprise_id : nil) }, 
+		{:style => 'width:200px;'} %>
+    </div>
+    <%= observe_field 'area_enterprise_id', :url => @options.merge(:controller => '/areas', :action => 'combo_by_enterprise'), :update => 'span_perspective_area_id', :with => 'combo_enterprise_id' %>
+    <% end %>
+
+    <div class="form-element">
+      <label for="perspective_area_id">Cuadro de mando</label>
+      <span id="span_perspective_area_id">
+      <% if current_user && !current_user.nil? && current_user.profile.privilege5 == 'X'%>
+        <%= select 'perspective', 'area_id' , 
+		  ((params[:action] == 'edit') ? Area.find(:all, :conditions => ['enterprise_id = ?', @perspective.area.enterprise_id]).collect {|p| [ p.name, p.id ] } : []), 
+		  { :include_blank => ((params[:action] == 'edit') ? false : true) }, 
+		  {:style => 'width:200px;'} %>
+      <% elsif current_user && !current_user.nil? && current_user.profile.privilege5 == 'E'%>
+        <%= select 'perspective', 'area_id' , Area.find(:all, :conditions => ['enterprise_id = ?', current_user.enterprise_id]).collect {|p| [ p.name, p.id ] }, 
+		  { :include_blank => ((params[:action] == 'edit') ? false : true) }, 
+		  {:style => 'width:200px;'} %>
+      <% elsif current_user && !current_user.nil? && current_user.profile.privilege5 == 'A'%>
+        <%= select 'perspective', 'area_id' , Area.find(:all, :conditions => ['enterprise_id = ? and owner = ?', current_user.enterprise_id, current_user[:id]]).collect {|p| [ p.name, p.id ] }, 
+		  { :include_blank => ((params[:action] == 'edit') ? false : true) }, 
+		  {:style => 'width:200px;'} %>
+      <% end %>
+	  </span>
+    </div>
+
+    <div class="form-element">
+      <label for="perspective_name">Nombre</label>
+      <%= text_field 'perspective', 'name' , {:class=>"text-input", :size => '50', :maxlength => '255'} %>
+    </div>
+  </div>
+</fieldset>

@@ -1,0 +1,28 @@
+--- 
+foo: 
+  id: 1
+  name: Foo
+  updated_at: 2007-02-05 18:33:14 +01:00
+  perspective_id: 1
+  period_id: 1
+  updater: 1
+  creator: 1
+  position: 1
+  lower_limit: 1
+  upper_limit: 10
+  target: 5
+  value: 2
+bar: 
+  id: 2
+  name: Bar
+  updated_at: 2007-02-05 18:33:14 +01:00
+  perspective_id: 1
+  period_id: 1
+  updater: 1
+  creator: 1
+  position: 2
+  lower_limit: 1
+  upper_limit: 10
+  target: 5
+  value: 2
+  

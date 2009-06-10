@@ -1,0 +1,1 @@
+<%=select params[:select_object], params[:select_attribute], @users.collect {|p| [ p.full_name, p.id ]}, {:include_blank => true}, {:style => 'width:200px;'} %>

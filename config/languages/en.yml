@@ -1,0 +1,388 @@
+# English Language Strings
+# Please remember the encoding of this file should *ALWAYS* be utf-8
+# When modifying this file, don't use the tab key. Use spaces for indenting any string
+
+# Keep the words delimited by % unchanged. They are only meant as placeholders and will be dynamically changed on execution
+# example with placeholders for params (you can change the max_length depending on the length of the text)
+# login_text: Usuario %my_user,max_length_including_trailing_dots% es incorrecto y %prueba%
+
+# If the text you are entering contains : or any other especial characters, enclose the string between double quotes "
+#example
+#title: "MiRubi.com : My Network"
+
+#For multiline strings just write in the new line keeping the indentation. If you need to quote a multiline String put
+#a double quote before the first line and one after. If you want to force a line break when showing the text, type \n
+#example
+#introduction_text: "This is an example. This is an example. This is an example. This is an example. This is an example.
+#                   This is an example. This is an example. This is an example. This is an example. This is an example.
+#                   This is an example.\n
+#                   This is an example. This is an example. This is an example."
+
+
+
+home:
+  home_page: Home
+  my_profile: My profile
+  your_data: Your data
+  control_panel: Control panel
+  greeting: Hi %first_and_last_name,33%
+  if_you_are_not_this_user: If you are not %first_name,33%, click here
+  balance_heading: Balance at %MiRubi.com%
+  network: network
+  direct: direct
+  admin: Admin
+  direct_estimated: estimado directo
+  network_estimated: estimado red
+  admin: Administración
+  invite_a_friend: Invite a friend
+  logout: Logout
+  my_network: My network
+  email: e-mail
+  password: contraseña
+  login_title: Acceso a Mirubi.com
+  login_error: Datos incorrectos. Inténtalo de nuevo
+  login_button: conectar  
+  new_account: Crea tu cuenta Mirubi
+  password_forgotten: Olvidé mi contraseña
+  recover_title: Recuperar Contraseña
+  recover_button: enviar
+  recover_text: Escribe tu e-mail y haz click en %recover_button%
+  mail_doesnt_exist: El e-mail no existe
+  new_password_sent: Una nueva password se ha enviado a su e-mail.
+  weather_title: "El tiempo en %city_area,27%"
+  weather_link: Instituto Nacional de Meteorología
+  category_search: Buscadores
+  category_email: E-mail
+  category_shopping: Compras
+  category_finance: Finanzas
+  category_classifieds: Clasificados
+  category_travel: Viajes
+  category_news: Noticias
+  category_local_guide: Guía Local
+  category_street_map: Callejeros
+  category_translator: Traductor
+  category_downloads: Descargas
+  search_button: buscar
+  customize: personalizar
+  buscar: buscar  
+ 
+  
+    
+  
+menu:
+  what_is_mirubi: What is MiRubí?
+  faq: FAQ
+  about_us: About us
+  start_network: Start your network
+  make_start_page: Set as homepage
+  
+  
+profile:
+  new_user_title: Registro de Nuevo Usuario
+  profile_title: Mi Perfil
+  new_introduction: Para poder acceder a MiRubi.com debes crear un nombre de usuario y contraseña. Para simplificar el
+                    proceso, tu usuario es directamente tu dirección de e-mail. Por favor, rellena el siguiente
+                    formulario para poder beneficiarte de las ventajas de MiRubi.com 
+  login_if_user: Si ya eres usuario de Mirubi.com, haz click en el siguiente link para identificarte con tus datos.
+  successful_update: Tus datos se han guardado correctamente
+  city_area: provincia
+  name: Nombre
+  last_name: Apellidos
+  email: E-mail
+  email_confirmation: Confirmación de e-mail
+  password: Contraseña
+  password_confirmation: Confirmación de contraseña
+  sponsor_type_intro: "Las ganancias que generes en Mirubi se comparten con tu padrino. Si conoces a alguien que esté 
+                      registrado en Mirubi y quieres que tus ganancias le reporten un beneficio, selecciona la opción
+                      'Amigo' y escribe su dirección de e-mail. Si no, selecciona la opción 'ONG' y selecciona una 
+                      de las ONG que colaboran con nosotros." 
+  sponsor_type: Tipo de padrino
+  ngo_type: O.N.G
+  friend_type: Amigo
+  sponsor_email: E-mail del padrino
+  ngo_name: Nombre de la O.N.G.
+  captcha_intro: Por favor, conteste a la pregunta. Este es un sistema de control para evitar registro automático de usuarios
+  
+  introduction: "Desde aquí puedes modificar los datos de tu perfil. Si quieres modificar tu dirección o tus datos de pago
+                selecciona la opción 'Ver Perfil Completo'.\n 
+                Si quieres recibir pagos en MiRubi es necesario que rellenes esta información."
+  view_full_profile: ver perfil completo
+  view_basic_profile: ver perfil básico
+  full_profile_title: Perfil completo (necesario para recibir pagos)
+  document_type: Tipo de documento
+  document_number: Número de documento
+  birth_date: Fecha de nacimiento
+  address: Dirección
+  city: Ciudad
+  postcode: Código Postal
+  paypal_account: Cuenta de Paypal
+  paypal_account_confirmation: Confirmación Cuenta Paypal
+
+my_network:
+  my_network_title: Mi Red
+  start_your_network: Empieza Tu Red
+  
+  start_network_intro: Todavía no tienes ninguna persona en tu red. Cuantas más personas invites, más se beneficiarán
+                       ellas de Mirubi.com y más ganancias obtendrás a través de ellos.
+                       
+  introduction: Estas son las personas en tu red. El número que aparece a la derecha del correo electrónico indica
+                el número de usuarios que cada uno tiene en su red. Cuantas más personas invites, más se beneficiarán
+                ellas de Mirubi.com y más ganancias obtendrás a través de ellos.
+                
+  intro_invite: Puedes añadir usuarios a tu red a través del botón %invite_a_friend%
+                
+  intro_import: También puedes invitar a tus amigos desde tu libreta de direcciones en yahoo o gmail 
+                a través del botón %import_contacts%
+                    
+  invite_button: Invita a un amigo
+  import_button: Importar contactos
+  invite_text_header: Texto que aparecerá en la invitación
+  invite_list: Lista de e-mails a invitar
+  invite_text: Te invito a unirte a mi red en MiRubi.com. En este portal te pagan por navegar por internet
+
+import_contacts:
+  import_contacts_title: Importar contactos de tu agenda
+  introduction: Puedes invitar a tus amigos directamente desde tu agenda en yahoo o gmail. Para ello necesitamos
+                que nos proporciones tu usuario y password para tu agenda. MiRubi.com descargará los nombres y 
+                direcciones de e-mail de tus amigos permitiéndote seleccionar aquellos que desees invitar a tu red.
+  password_fair_use: Tu contraseña para la agenda sólo será utilizada para recuperar el nombre y e-mail de
+                     tus contactos y no quedará almacenada de ninguna manera en nuestro sistema
+  provider_type: Proveedor de la agenda
+  email: usuario/e-mail
+  password: contraseña
+  import_button: importar
+  mandatory_fields: seleccione un proveedor, e introduzca su usuario y password
+  authentication_error: no se puede conectar con el usuario y password proporcionados
+  provider_error: se produjo un error al conectar con el proveedor de tu agenda de contactos
+  empty_list: la lista de contactos está vacía
+  mark_all: Mark all
+  unmark_all: Unmark all
+
+invite_friend:
+  invite_friend_title: Invita a un amigo
+  introduction: "Puedes invitar a tantos amigos como quieras para que formen parte de tu red en MiRubi.com. Cuantos
+                más amigos tengas en tu red, más dinero podrás obtener. Recuerda que la sexta parte de lo que generen
+                tus amigos, y los amigos que ellos inviten, irá a parar a tu cuenta.\n\n
+                Escribe las direcciones de e-mail de tus amigos en la caja que aparece debajo. Separa las direcciones
+                de e-mail por comas o bien pon una única dirección por línea."
+  existing_users: "Los siguientes usuarios ya están dados de alta en Mirubi.com, por lo que no pueden ser invitados
+                  de nuevo : %existing_users_emails%"  
+  invite_list_empty: La lista de direcciones de e-mail está vacía
+  invite_text_empty: El texto de invitación está vacío
+  invitation_sent: Se han enviado las invitaciones correctamente
+  send_invites: enviar invitaciones
+  
+    
+account_balance:
+  balance_title: Balance de tu cuenta
+  introduction: Aquí puedes ver el balance de tu cuenta en MiRubi.com.
+  minimum_amount_fee_text: "Si tu cantidad confirmada está por debajo de %amount% € y solicitas el pago, se te 
+                           descontará una comisión de %fee% €."
+  confirmed_amount_title: Cantidad Confirmada
+  confirmed_amount_intro: Esta cantidad representa las comisiones que has acumulado directamente o a través de tu red y 
+                          que nuestros anunciantes ya nos han pagado. Puedes hacer efectivo el pago de esta cantidad cuando
+                          lo desees. Recuerda que si está por debajo del mínimo se te aplicará una comisión.  
+  estimated_amount_title: Cantidad Estimada
+  estimated_amount_intro: Esta cantidad representa las comisiones que hemos contabilizado en el sistema, a falta de confirmarlas
+                          con nuestros anunciantes y de recibir el pago correspondiente. En cuanto nuestros anunciantes nos hagan
+                          efectiva la cantidad pendiente, contabilizaremos esta cantidad como confirmada y podrás cobrarla.
+  paypal_account_missing: Se requiere una cuenta de paypal
+  paypal_amount_under_fee: La cantidad es menor que la tarifa que aplicamos por solicitar el pago antes de alcanzar el mínimo.
+  claim_payment_text: Para solicitar que te paguemos la cantidad confirmada, selecciona el botón  %get_payment_button%
+  get_payment_button: Solicitar Pago
+  
+  gateway_message: El mensaje recibido es %gateway_error_message%
+  payment_ok: El pago se ha ordenado correctamente.
+  payment_error: Se ha producido un error procesando el pago. 
+
+signout:
+  signout_title: Baja de Usuario
+  signout_intro: Para poder darte de baja debes introducir tu dirección de e-mail
+  signout_intro_password: Para poder darte de baja debes introducir tu contraseña
+  signout_intro_nocode: Para poder darte de baja debes introducir tu dirección de e-mail y el código de baja que recibiste en el mail
+                        de registro, si no dispones del código de baja, puedes darte de baja ...
+  email: usuario/e-mail
+  password: Contraseña
+  signout_code: Código de baja
+  signout_code_mandatory: El código de baja no puede estar en blanco
+  email_mandatory: El usuario/e-mail no puede estar en blanco
+  parameters_incorrect: El código de baja o usuario/e-mail introducidos son incorrectos
+  password_incorrect: La contraseña introducida es incorrecta
+  signout_ok: Su petición se baja se está procesando
+  
+control_panel:
+  name: Name
+  subcategory: Subcategory
+  ranking: Users Ranking
+  rubies: Number of Rubies
+  position: Position
+  control_panel: Control Panel
+  select_category: Select a category    
+  description: Description
+  goto_button_text: Visit
+  back_to_home: Back to Home
+  no_entries: No entries
+  category: Category
+  
+new_password_mail:
+  subject: Tu Nueva Contraseña en MiRubi.com
+  title: Nueva Contraseña
+  why_this_email: Estás recibiendo este correo porque seleccionaste la opción "%password_forgotten%" en MiRubi.com.
+  password_policy: Para proteger los datos de nuestros usuarios, tu contraseña se almacena con un sistema de 
+                   codificación que hace imposible que podamos recuperarla. De este modo nos aseguramos que 
+                   tú, y sólo tú, conoces la contraseña para acceder a nuestra web.
+  your_new_password: "Hemos generado automáticamente una nueva contraseña para ti.Tu nueva contraseña para acceder a
+                     mirubi.com es : %new_password%"
+  password_update: Te recordamos que, una vez te hayas identificado en nuestra página con tu nueva contraseña, 
+                   puedes modificarla en cualquier momento si lo deseas desde la opción "%your profile%" 
+
+activation_mail:
+  subject: Bienvenido a MiRubi.com
+  title: Bienvenido a MiRubi.com
+  greeting: Estimado/a %usuario%
+  user_in_mirubi: "Te confirmamos que te has registrado  como usuario en Mirubi.com. Mirubi.com es el único portal 
+                  en España que te permite tener un rápido acceso a las webs que uses frecuentemente y además te paga
+                   por utilizarlo tu y los amigos a los que invites. Tu usuario en Mirubi es: %email%"
+  services_mirubi: "A partir de este momento dispones de una puerta de acceso a internet donde podrás:"
+  customize_title: "1.- Personalizar la página con las webs que uses más frecuentemente:"  
+  customize_text: "A través del símbolo + que encontrarás en la parte inferior de cada cajetín o a través del panel de
+                  control, podrás personalizar la página incluyendo en ella aquellas webs que uses más frecuentemente." 
+  money_title: "2.- Ganar Dinero de una forma sencilla:"
+  money_text: "Utilizando MiRubi.com para realizar tus búsquedas en internet, leer tus periódicos, acceder a portales de
+               compras o de viajes, te permite ganar dinero. No tienes que hace nada especial, simplemente utiliza mirubi.com 
+               como puerta de acceso y ganarás dinero."
+  network_title: "3.- Crear tu propia red invitando a tus amigos:"
+  network_text: "Mirubi.com te permite invitar a tus amigos para que ellos también se beneficien de la facilidad de acceso a 
+                internet y de la oportunidad de ganar dinero. Te pagaremos un sexto de lo que generen los amigos que invites 
+                directamente y otro sexto de los amigos que ellos inviten."
+  ngo_title: "4.- Colaborar con las ONGs:"
+  ngo_text: "En la cabeza de toda la red se encuentran varias ONGs que se beneficiarán de la actividad que generes 
+             tu y los amigos que invites."                   
+
+signout_notification_mail:
+  subject: Notificación de baja
+  title: Notificación de baja de %full_name%
+  signout_notification: El usuario con mail %email% ha solicitado darse de baja en el sistema.
+    
+invite_friend_mail:
+  subject: Invitación a Mirubi.com
+  title: Invitación de tu amigo %friend_email% para formar parte de MiRubi.com  
+  why_this_email: "Tu amigo %friend_email% te manda esta invitación para que entres a formar parte de su red en Mirubi.com."
+  click_to_register: "Para registrarte haz clic aquí: %invite_link%."
+  invite_link_text: Registro de Nuevo Usuario
+  mirubi_intro_header: "Mirubi.com te permitirá disponer de una puerta de acceso a internet donde podrás:" 
+  customize_title: "1.- Personalizar la página con las webs que uses más frecuentemente:"  
+  customize_text: "A través del símbolo + que encontrarás en la parte inferior de cada cajetín o a través del panel de
+                  control, podrás personalizar la página incluyendo en ella aquellas webs que uses más frecuentemente." 
+  money_title: "2.- Ganar Dinero de una forma sencilla:"
+  money_text: "Utilizando MiRubi.com para realizar tus búsquedas en internet, leer tus periódicos, acceder a portales de
+               compras o de viajes, te permite ganar dinero. No tienes que hace nada especial, simplemente utiliza mirubi.com 
+               como puerta de acceso y ganarás dinero."
+  network_title: "3.- Crear tu propia red invitando a tus amigos:"
+  network_text: "Mirubi.com te permite invitar a tus amigos para que ellos también se beneficien de la facilidad de acceso a 
+                internet y de la oportunidad de ganar dinero. Te pagaremos un sexto de lo que generen los amigos que invites 
+                directamente y otro sexto de los amigos que ellos inviten."
+  ngo_title: "4.- Colaborar con las ONGs:"
+  ngo_text: "En la cabeza de toda la red se encuentran varias ONGs que se beneficiarán de la actividad que generes 
+             tu y los amigos que invites."                   
+
+user_in_network_mail:
+  subject: Nuevo usuario en tu red MiRubi.com
+  title: Confirmación de nuevo usuario en tu red (%email%)
+  greeting: Estimado/a %full_name%
+  why_this_email: "Tu amigo %friend_full_name% se ha registrado en MiRubi.com y ha pasado ha formar parte de tu red. 
+                  Desde este momento recibirás un sexto de los ingresos que genere directamente y otro sexto de los 
+                  ingresos que generen los amigos a los que invite directamente."
+  your_network: "Para consultar  tu red de contactos invitados haz clic aquí: %contact_network%."  
+  network_link_text: Red de Contactos
+  keep_inviting: Continúa invitando a más amigos
+  invite_friends_link_text: Invita a un amigo
+  invite_more_friends: "Cuantos más amigos invites más grande será tu red y más ingresos podrás recibir. 
+                       No lo dudes más, continúa invitando amigos: %invite_friends_link_text%"
+    
+payment_available_mail:
+  subject: Pago disponible en MiRubi.com
+  title: Disponibles %amount% € para ser retirados de MiRubi.com
+  greeting: Estimado/a %name%
+  payment_ready: "Me es grato comunicarte que tiene disponible en Mirubi.com %amount% € generados por tu 
+                 actividad y la de tu red de amigos."
+  payment_claim: "Para retirar el importe de Mirubi.com haga clic aquí: %payment_link_text%."
+  claim_payment_link_text: Retirada de Dinero  
+  invite_friends_title: "Continua invitando a más amigos:"
+  invite_friends_text: "Cuantos más amigos invites más grande será tu red y más ingresos podrás recibir. 
+                        No lo dudes más, continua invitando amigos: Invita a un amigo."
+ 
+payment_ordered_mail:
+  subject: Pago ordenado desde MiRubi.com
+  title: Pago de %amount% € 
+  greeting: Estimado/a %name%
+  payment_ordered: Me es grato comunicarte que se ha ordenado el pago de %amount% € a tu cuenta de Paypal
+  invite_friends_title: "Continua invitando a más amigos:"
+  invite_friends_text: "Cuantos más amigos invites más grande será tu red y más ingresos podrás recibir. 
+                        No lo dudes más, continua invitando amigos: Invita a un amigo." 
+    
+paypal_mail:
+  subject: Pago de mirubi.com
+  note: Gracias por utilizar mirubi.com
+
+default_error_messages:
+  inclusion: is not included in the list
+  exclusion: is reserved
+  invalid: is invalid
+  confirmation: doesn't match confirmation
+  accepted: must be accepted
+  empty: can't be empty
+  blank: can't be blank
+  too_long: is too long (maximum is %d characters)
+  too_short: is too short (minimum is %d characters)
+  wrong_length: is the wrong length (should be %d characters)
+  taken: has already been taken
+  not_a_number: is not a number               
+  error_translation: error
+  sponsor_invalid: The selected sponsor or NGO doesn't exist at Mirubi.com
+  sponsor_mandatory: You must choose a Sponsor or NGO
+  self_sponsor_invalid: You cannot be your own sponsor
+  legal_age: User must be at least 18 years old
+  errors_header: The information couldn't be saved
+  errors_subheader: Please correct the following errors
+  captcha_invalid_answer: The answer to the control question is not correct
+
+error_fields:
+  first_name: First Name  
+  last_name: Last Name
+  paypal_account: Paypal Account
+  paypal_account_confirmation: Paypal Account Confirmation
+  email: E-mail
+  email_confirmation: E-mail Confirmation
+  password: Password
+  password_confirmation: Password Confirmation   
+
+                                       
+global:
+  month_names: Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre
+  day_names: Lunes Martes Miércoles Jueves Viernes Sábado Domingo
+  waiting_for_server: conectando... por favor, espera
+  accept_button: Aceptar
+  back: volver
+  close: cerrar
+  email_format: e-mail inválido
+  smtp_error:  error de envío.Inténtalo más tarde
+  email_disclaimer: "Este mensaje ha sido enviado desde una dirección de correo electrónico exclusivamente de notificación
+                    que no admite mensajes. Por favor, no responda a este mensaje."
+  contact_link_text: nuestro servicio de atención al cliente                     
+  email_contact_link: Si tienes cualquier problema no dudes en contacta con %contact_link_text%
+  mail_farewell: Atentamente,
+  mail_signature: MiRubí.com
+  email_paste_link: Si no puedes acceder a ese enlace, pega esta dirección en tu navegador de internet (Internet Explorer, Firefox...) %link% 
+  client_attention_link_text: nuestro servicio de atención al cliente
+  internal_error: Problema temporal con la aplicación. Por favor inténtelo más tarde
+  
+captcha:
+  question_1: which is the opposite of North? (south)
+  question_2: which is the capital of England? (london)  
+  
+error_page:
+  error_404_title: The page you were looking for doesn't exist
+  error_404_text: You may have mistyped the address or the page may have moved.
+  error_500_title: We're sorry, but something went wrong
+  error_500_text: We've been notified about this issue and we'll take a look at it shortly.  

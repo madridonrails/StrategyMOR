@@ -1,0 +1,3 @@
+if @successful
+  page.remove "bsc_detail_background"
+end

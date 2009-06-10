@@ -1,0 +1,114 @@
+<input type="hidden" id="checkpoint_updater" name="checkpoint[updater]" value="<%= current_user.id %>"/>
+<fieldset>
+  <div class="row">
+    <% if current_user && !current_user.nil? && current_user.profile.privilege1 == 'X'%>
+    <div class="form-element">
+      <label for="area_enterprise_id">Empresa</label>
+      <%= select 'area', 'enterprise_id' , Enterprise.find_all.collect {|p| [ p.name, p.id ] }, 
+	    { :include_blank => ((params[:action] == 'edit') ? false : true),
+		  :selected => ((params[:action] == 'edit') ? @checkpoint.objective.perspective.area.enterprise_id : nil) }, 
+		{:style => 'width:200px;'} %>
+    </div>
+    <%= observe_field 'area_enterprise_id', :url => {:controller => '/areas', :action => 'combo_by_enterprise', :select_object => 'objective'}, :update => 'span_perspective_area_id', :with => 'combo_enterprise_id' %>
+    <%= observe_field 'area_enterprise_id', :function => "emptySelect('objective_perspective_id')"%>
+    <%= observe_field 'area_enterprise_id', :function => "emptySelect('checkpoint_objective_id')"%>
+    <% end %>
+  </div>
+  <div class="row">
+    <% if current_user && !current_user.nil? && (current_user.profile.privilege7 == 'X' || current_user.profile.privilege7 == 'E' ||current_user.profile.privilege7 == 'A' )%>
+    <div class="form-element">
+      <label for="perspective_area_id">Cuadro de mando</label>
+	  <span id="span_perspective_area_id">
+      <% if current_user && !current_user.nil? && current_user.profile.privilege5 == 'X'%>
+        <%= select 'perspective', 'area_id' , 
+		  ((params[:action] == 'edit') ? Area.find(:all, :conditions => ['enterprise_id = ?', @checkpoint.objective.perspective.area.enterprise_id]).collect {|p| [ p.name, p.id ] } : []), 
+		  {:selected => ((params[:action] == 'edit') ? @checkpoint.objective.perspective.area_id : nil) },
+          {:style => 'width:200px;'} %>
+	  <% elsif current_user && !current_user.nil? && current_user.profile.privilege5 == 'E'%>
+        <%= select 'perspective', 'area_id' , Area.find(:all, :conditions => ['enterprise_id = ?', current_user.enterprise_id]).collect {|p| [ p.name, p.id ] },
+		  {:include_blank => ((params[:action] == 'edit') ? false : true), :selected => ((params[:action] == 'edit') ? @checkpoint.objective.perspective.area_id : nil) },
+        {:style => 'width:200px;'} %>
+      <% elsif current_user && !current_user.nil? && current_user.profile.privilege5 == 'A'%>
+        <%= select 'perspective', 'area_id' , Area.find(:all, :conditions => ['enterprise_id = ? AND owner = ?', current_user.enterprise_id, current_user[:id]]).collect {|p| [ p.name, p.id ] },
+		  {:include_blank => ((params[:action] == 'edit') ? false : true), :selected => ((params[:action] == 'edit') ? @checkpoint.objective.perspective.area_id : nil) },
+        {:style => 'width:200px;'} %>
+      <% end %>
+	  </span>
+    </div>
+    <%= observe_field 'perspective_area_id', :url => {:controller => '/perspectives', :action => 'combo_by_area', :select_object => 'checkpoint'}, :update => 'span_objective_perspective_id', :with => 'combo_area_id' %>
+    <%= observe_field 'perspective_area_id', :function => "emptySelect('checkpoint_objective_id')"%>
+
+    <div class="form-element">
+      <label for="objective_perspective_id">Perspectiva</label>
+	  <span id="span_objective_perspective_id">
+      <%= select 'objective', 'perspective_id' , 
+	    ((params[:action] == 'edit') ? Perspective.find(:all, :conditions => ['area_id = ?', @checkpoint.objective.perspective.area_id]).collect {|p| [ p.name, p.id ] } : []), {:include_blank => ((params[:action] == 'edit') ? false : true), :selected => ((params[:action] == 'edit') ? @checkpoint.objective.perspective_id : nil) }, {:style => 'width:200px;'} %>
+	  </span>
+    </div>
+    <%= observe_field 'objective_perspective_id', :url => {:controller => '/objectives', :action => 'combo_by_perspective', :select_object => 'checkpoint'}, :update => 'span_objective_id', :with => 'combo_perspective_id' %>
+    <div class="form-element">
+      <label for="checkpoint_objective_id">Objetivo</label>
+	    <span id="span_objective_id">
+          <%= select 'checkpoint', 'objective_id' , 
+	  ((params[:action] == 'edit') ? Objective.find(:all, :conditions => ['perspective_id = ?', @checkpoint.objective.perspective_id]).collect {|p| [ p.name, p.id ] } : []), {:include_blank => ((params[:action] == 'edit') ? false : true)}, {:style => 'width:200px;'} %>
+	    </span>
+    </div>
+    <% else %>
+    <div class="form-element">
+      <label for="checkpoint_objective_id">Objetivo</label>
+        <span id="span_objective_id">
+          <%= select 'checkpoint', 'objective_id' , 
+	  current_user.dependent_objectives.collect {|p| [ p.name, p.id ] }, {:include_blank => ((params[:action] == 'edit') ? false : true)}, {:style => 'width:200px;'} %>
+	  </span>
+    </div>
+    <% end %>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="row">
+    <div class="form-element">
+      <label for="checkpoint_update_date2">Fecha</label>
+      <%= dynarch_date_select 'checkpoint', 'update_date', :date_format => "%d/%m/%Y"%>
+    </div>
+    <div class="form-element">
+      <label for="checkpoint_target">Meta</label>
+      <%= text_field 'checkpoint', 'target' , {:class=>"text-input", :size => '10', :maxlength => '15'} %>
+    </div>
+    <div class="form-element">
+      <label for="checkpoint_upper_limit">L&iacute;mite superior</label>
+      <%= text_field 'checkpoint', 'upper_limit' , {:class=>"text-input", :size => '10', :maxlength => '15'} %>
+    </div>
+    <div class="form-element">
+      <label for="checkpoint_lower_limit">L&iacute;mite inferior</label>
+      <%= text_field 'checkpoint', 'lower_limit' , {:class=>"text-input", :size => '10', :maxlength => '15'} %>
+    </div>
+    <div class="form-element">
+      <label for="checkpoint_value">Valor</label>
+      <%= text_field 'checkpoint', 'value' , {:class=>"text-input", :size => '10', :maxlength => '15'} %>
+    </div>
+   </div>
+   <div class="row">
+    <div class="form-element">
+      <label for="checkpoint_comments">Comentarios</label>
+      <%= text_area 'checkpoint', 'comments' , {:class=>"text-input"} %>
+    </div>
+  </div>
+</fieldset>

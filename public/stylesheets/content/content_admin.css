@@ -1,0 +1,116 @@
+/*
+------------ Content Admin -------------------------------------------------------------------
+*/
+
+
+div.live_editor {    
+    height:10px;
+    margin:0px;
+    color: #000001;
+    font-size:10px;
+    background-color: #C5DEA1;
+    clear:none;
+    text-align: center;
+    border:1px solid #AEDE4C;    	 
+	  font-weight: normal;
+	  z-index:+100;
+    }	
+
+div.admin_bar {margin:0px;font-size:0.9em;font-family:Verdana, Arial;background-color: #AEDEAE;clear:none;z-index:+100}       div.admin_bar  a{text-decoration:none;color:#333333;}
+div.admin_bar  a:hover{text-decoration:none;color:#ffffff;}
+div.admin_bar  select{font-family:Verdana, Arial;font-size:0.8em;color:#000000;border-color:#000000;}
+div.admin_bar  select option{font-family:Verdana, Arial;font-size:0.8em;color:#000000;border-color:#000000;} 
+    
+div.content_holder {    
+    background-color: #white;
+    border-width:0px;
+    border-style:solid;
+    border-color: #AEDE4C;  
+    z-index:-1; 
+    height: 100%; 
+}   
+
+div#page_navigation_bar
+{
+  clear:none;
+}
+
+
+
+div.popup-header {
+  border: 1px solid #96252A;
+  font-size: 12px;
+  font-weight: bold;  
+  color: #FFF;
+  background-color: #BBBBFF;
+  padding: 2px 14px;
+}
+
+div.popup-header a {font-weight:bold;color:#ffffff;}
+
+div.popup-form {background-color: #ffbbbb;border-left: solid 1px #dd0000;padding: 15px 5px 5px 5px;}
+
+/*
+------------ Forms -------------------------------------------------------------------
+*/
+.boton {
+	width: 65px;
+	height: 21px;
+	border: 0;
+	background-color: #BBBBFF;
+	color: #000000;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.boton_small {
+	width: 45px;
+	height: 21px;
+	border: 0;
+	background-color: #BBBBFF;
+	color: #000000;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.boton_large {
+	width: 85px;
+	height: 21px;
+	border: 0;
+	background-color: #BBBBFF;
+	color: #000000;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.boton_very_large {
+	width: 105px;
+	height: 21px;
+	border: 0;
+	background-color: #BBBBFF;
+	color: #000000;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+
+/*
+------------ Tablas en popups ---------------------------------------------------------------
+*/
+
+table.popup-table {
+  width: 100%;
+  border: 1px solid #000000;
+  font-size: 12px;
+  color: #6D6152;
+  background-color: #FFFFFF;
+  border-collapse: collapse;
+}
+table.popup-table thead tr th {background-color: #BBBBFF;text-align:left;color: #ffffff;padding: 2px 15px 2px 5px;}
+table.popup-table tbody tr td,table.popup-table tbody tr th {padding: 5px 4px;color: #440000;font-size: 1em;border-bottom: solid 1px #000000;border-left: solid 1px #000000;}
+table.popup-table tbody tr td a {font-weight: bold; letter-spacing: -1px;padding: 2px;margin: 0 2px;line-height: 16px;}
+table.popup-table tbody tr.impar td {background-color: #F3EDE5;border-left: solid 1px #000000;}
+
+
+
+

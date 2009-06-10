@@ -1,0 +1,7 @@
+--- 
+foo: 
+  id: 1
+  name: Foo
+  adjective: Foolly
+  days: 1
+  updated_at: 2007-02-05 18:33:14 +01:00

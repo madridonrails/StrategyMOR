@@ -1,0 +1,38 @@
+        <div id="pestanas">
+          <ul>
+          <% if current_user.profile_id == BscgemUtils.profile('master') %>
+            <li <%= params[:controller] == 'initiatives' ? 'id="current"' : '' %>><%= link_to("Inics", :controller => 'initiatives')%> </li> 
+            <li <%= params[:controller] == 'affects' ? 'id="current"' : '' %>><%= link_to("Rels", :controller => 'affects')%> </li> 
+            <li <%= params[:controller] == 'checkpoints' ? 'id="current"' : '' %>><%= link_to("Hist", :controller => 'checkpoints')%> </li> 
+            <li <%= params[:controller] == 'objectives' ? 'id="current"' : '' %>><%= link_to("Objs", :controller => 'objectives')%> </li> 
+            <li <%= params[:controller] == 'perspectives' ? 'id="current"' : '' %>><%= link_to("Persps", :controller => 'perspectives')%> </li>
+            <li <%= params[:controller] == 'areas' ? 'id="current"' : '' %>><%= link_to("BSCs", :controller => 'areas')%> </li> 
+            <li <%= params[:controller] == 'periods' ? 'id="current"' : '' %>><%= link_to("Periods", :controller => 'periods')%> </li> 
+            <li <%= params[:controller] == 'profiles' ? 'id="current"' : '' %>><%= link_to("Perfs", :controller => 'profiles')%> </li> 
+            <li <%= params[:controller] == 'users' ? 'id="current"' : '' %>><%= link_to("Usrs", :controller => 'users')%> </li> 
+            <li <%= params[:controller] == 'enterprises' ? 'id="current"' : '' %>><%= link_to("Emprs", :controller => 'enterprises')%> </li> 
+            <li><%= link_to("Web", '/web/index')%> </li> 
+          <% elsif current_user.profile_id == BscgemUtils.profile('minimaster') %>
+            <li <%= params[:controller] == 'periods' ? 'id="current"' : '' %>><%= link_to("Periodicidades", :controller => 'periods')%> </li> 
+            <li <%= params[:controller] == 'profiles' ? 'id="current"' : '' %>><%= link_to("Perfiles", :controller => 'profiles')%> </li> 
+            <li <%= params[:controller] == 'users' ? 'id="current"' : '' %>><%= link_to("Usuarios", :controller => 'users')%> </li> 
+            <li <%= params[:controller] == 'enterprises' ? 'id="current"' : '' %>><%= link_to("Empresas", :controller => 'enterprises')%> </li> 
+          <% elsif current_user.profile_id == BscgemUtils.profile('enterprise manager') %>
+            <li <%= params[:controller] == 'initiatives' ? 'id="current"' : '' %>><%= link_to("Iniciativas", :controller => 'initiatives')%> </li> 
+            <li <%= params[:controller] == 'objectives' ? 'id="current"' : '' %>><%= link_to("Objetivos", :controller => 'objectives')%> </li> 
+            <li <%= params[:controller] == 'areas' ? 'id="current"' : '' %>><%= link_to("Cuadros de mando", :controller => 'areas')%> </li> 
+            <li <%= params[:controller] == 'users' ? 'id="current"' : '' %>><%= link_to("Usuarios", :controller => 'users')%> </li> 
+            <li <%= params[:controller] == 'enterprises' ? 'id="current"' : '' %>><%= link_to("Mi empresa", :controller => 'enterprises', :action => 'my_enterprise')%> </li> 
+          <% elsif current_user.profile_id == BscgemUtils.profile('dashboard manager') %>
+            <li <%= params[:controller] == 'initiatives' ? 'id="current"' : '' %>><%= link_to("Iniciativas", :controller => 'initiatives')%> </li> 
+            <li <%= params[:controller] == 'objectives' ? 'id="current"' : '' %>><%= link_to("Objetivos", :controller => 'objectives')%> </li> 
+            <li <%= params[:controller] == 'areas' ? 'id="current"' : '' %>><%= link_to("Mis cuadros de mando", :controller => 'areas')%> </li> 
+            <li <%= params[:controller] == 'users' ? 'id="current"' : '' %>><%= link_to("Mi perfil", :controller => 'users', :action => 'my_user')%> </li> 
+          <% elsif current_user.profile_id == BscgemUtils.profile('objective manager') %>
+            <li <%= params[:controller] == 'initiatives' ? 'id="current"' : '' %>><%= link_to("Mis iniciativas", :controller => 'initiatives')%> </li> 
+            <li <%= params[:controller] == 'objectives' ? 'id="current"' : '' %>><%= link_to("Mis objetivos", :controller => 'objectives')%> </li> 
+            <li <%= params[:controller] == 'users' ? 'id="current"' : '' %>><%= link_to("Mi perfil", :controller => 'users', :action => 'my_user')%> </li> 
+</li> 
+          <% end %>
+          </ul>
+        </div>

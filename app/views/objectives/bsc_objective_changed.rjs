@@ -1,0 +1,17 @@
+if @successful
+  if @close_popup == true
+    page.remove "bsc_detail_background"
+  end
+
+  @perspectives_to_repaint.each do |@perspective|
+    page.replace "perspective#{@perspective.id}", :partial => "perspectives/bsc", :locals => {:persp => @perspective}
+  end
+
+  @objectives_to_delete.each do |@objective|
+    page.remove "bubble#{@objective.id}"
+  end
+else
+  page.replace_html 'bsc_messages', :partial => 'form_messages'
+  page << "$('bsc_messages').style.visibility = 'visible';"
+  page << "$('bsc_messages').style.display = 'block';"
+end

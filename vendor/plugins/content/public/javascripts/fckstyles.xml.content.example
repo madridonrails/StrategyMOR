@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+ * FCKeditor - The text editor for internet
+ * Copyright (C) 2003-2006 Frederico Caldeira Knabben
+ * 
+ * Licensed under the terms of the GNU Lesser General Public License:
+ * 		http://www.opensource.org/licenses/lgpl-license.php
+ * 
+ * For further information visit:
+ * 		http://www.fckeditor.net/
+ * 
+ * "Support Open Source software. What about a donation today?"
+ * 
+ * File Name: fckstyles.xml
+ * 	This is the sample style definitions file. It makes the styles combo
+ * 	completely customizable.
+ * 	See FCKConfig.StylesXmlPath in the configuration file.
+ * 
+ * File Authors:
+ * 		Frederico Caldeira Knabben (fredck@fckeditor.net)
+-->
+<Styles>
+	<Style name="Cuerpo" element="span">
+		<Attribute name="class" value="cuerpo" />
+	</Style>
+		<Style name="Cuerpo2" element="span">
+		<Attribute name="class" value="cuerpo2" />
+	</Style>
+	<Style name="Euro1" element="span">
+		<Attribute name="class" value="euro1" />
+	</Style>
+	<Style name="Euro2" element="span">
+		<Attribute name="class" value="euro2" />
+	</Style>
+	<Style name="Titulo1" element="span">
+		<Attribute name="class" value="titular01" />
+	</Style>
+	<Style name="Titulo2" element="span">
+		<Attribute name="class" value="titular02" />
+	</Style>
+	<Style name="Titulo2 Gris" element="span">
+		<Attribute name="class" value="titular02Gris" />
+	</Style>
+	<Style name="Titulo3" element="span">
+		<Attribute name="class" value="titular03" />
+	</Style>
+	<Style name="Titulo4" element="span">
+		<Attribute name="class" value="titular04" />
+	</Style>
+	<Style name="Titulo5" element="span">
+		<Attribute name="class" value="titular05" />
+	</Style>
+	<Style name="Titulo6" element="span">
+		<Attribute name="class" value="titular06" />
+	</Style>
+	<Style name="Titulo7" element="span">
+		<Attribute name="class" value="titular07" />
+	</Style>
+	<Style name="Pie de Pagina" element="span">
+		<Attribute name="class" value="piePagina" />
+	</Style>
+
+</Styles>

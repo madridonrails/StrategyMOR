@@ -1,0 +1,25 @@
+<%
+page_path = (page_path.nil? || page_path.empty?) ? '/' : page_path
+obj_page=get_page_for_page_path(page_path)
+  siblings=obj_page.page_siblings
+  is_first = (obj_page.position == 1)
+  is_last = (obj_page.position == (siblings.size ) )
+%>
+<div id='page_navigation_bar'>
+  <table width="100%">
+    <tr>
+      <td style="border:0px" align="left">
+      <%unless is_first%>
+        <%=link_to 'Anterior', "/content/display_previous_page?page_path=#{page_path}" %>
+      <%end%>  
+    </td>
+    <td  style="border:0px" align="right">    
+      <%unless is_last%>  
+        <%=link_to 'Siguiente', "/content/display_next_page?page_path=#{page_path}" %>
+      <%end%>  
+    </td>
+  </tr>
+ </table>
+</div> <!-- page_navigation_bar -->
+
+

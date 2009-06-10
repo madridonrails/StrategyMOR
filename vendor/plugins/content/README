@@ -1,0 +1,63 @@
+Content
+=======
+
+This plugin depends on fckeditor plugin. Install it before editing pages
+	ruby script/plugin install svn://rubyforge.org//var/svn/fckeditorp/trunk/fckeditor
+	
+After you have it, rename /public/javascripts/fckcustom.js.content.example to
+ fckcustom.js and configure it if needed
+ 
+Also, do the same for fckstyles.xml and fcktemplates.xml on the same directory
+
+----------
+This plugin includes bundled the windows library http://prototype-window.xilinus.com/.
+Please read their terms and license
+----------
+In order to create the plugin db structure you need to run 
+		"rake content:initialize_database"
+		
+** If you want to uninstall the plugin, run "rake content:delete_database" before removing it
+----------
+
+Content.default_template is set to 'content_template_sample'. You can override this 
+value to use your default page template by defining it at environment.rb (or any other global scope)
+
+----------
+
+The plugin will map '' and 'web/*page_path' routes dynamically at every start by default
+
+the 'web' default prefix can be changed by setting Content.web_prefix at environment.rb
+if Content.map_home_to_content is set to false it will not map the app home to the content system
+
+----------
+
+if the Helper ContentPermissionsHelper is defined, it will be automatically included
+by the plugin, so you can define your role methods in that helper instead of messing with ApplicationHelper
+
+----------
+
+Content.publish_path determines the docroot for content publishing. It defaults to /app/views/content/publish but can be overriden at environment.rb
+
+------
+
+Content.upload_path determines the path without the trailing / (client-side related, so '' means public directory) to upload/browse images from the fckeditor
+Defaults to '' and can be overriden as usual
+
+----
+
+Please review your server configuration. XML mime type should be defined properly (text/xml) for the styles/templates FCKEditor functionality
+
+----
+
+If you have any caching policy which affects to pages with content served by this plugin, please overwrite at environment.rb (or some place included at boot time) the Content.after_publish method accordingly.
+An example of this overwriting could be:
+
+module Content
+  def self.after_publish
+    Cache.delete(CacheKey.key('home','default_home'))  
+    puts "default_home removed from cache" 
+  end
+end
+
+----------------------
+

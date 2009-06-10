@@ -1,0 +1,28 @@
+<% # The following is used when the browser doesn't have javascript enabled %>
+<% class_attr = cycle("filaimpar", "filapar") %>
+<% @options = params.merge(:controller => '/affects', :action => "view", :id => affect.send("#{Affect.primary_key}")) %>
+
+<tr id="<%= element_row_id(@options) %>" class="<%= class_attr %>">
+  <% num_cols = 0 %>
+  <% for scaffold_column in scaffold_columns %>
+    <% column_value = eval(scaffold_column.eval) rescue nil %>
+    <td class="<%= num_cols > 0 ? 'celda' : 'celdainicio' %>">
+      <%= format_column(column_value, scaffold_column.sanitize?) %>
+    </td>
+    <% num_cols += 1 %>
+  <% end %>
+  <td width="70px">
+    <%= loading_indicator_tag(@options) %>
+    <% edit_options = @options.merge(:action => 'edit') %>
+    <%= link_to_remote image_tag('icons/icon-edit.gif', :hspace => '1', :border => '0', :alt => 'editar', :title => 'editar'),
+        { :url => edit_options,
+          :loading => "Element.show('#{loading_indicator_id(@options)}');" },
+        { :href => url_for(edit_options) } %>
+    <% delete_options = @options.merge(:action => 'destroy') %>
+    <%= link_to_remote image_tag('icons/icon-delete.gif', :hspace => '1', :border => '0', :alt => 'borrar', :title => 'borrar'),
+        { :url => delete_options,
+          :confirm => 'Esta seguro?',
+          :loading => "Element.show('#{loading_indicator_id(@options)}');" },
+        { :href => url_for( delete_options ) } %>
+  </td>
+</tr>

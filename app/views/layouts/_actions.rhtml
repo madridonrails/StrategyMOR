@@ -1,0 +1,19 @@
+          <% if current_user.profile_id == BscgemUtils.profile('master') %>
+            <a href="/users"><img src="/images/icons/icon-mine.gif" width="25" height="25" align="absmiddle"> Listado completo de usuarios </a><br/>
+            <a href="/enterprises"><img src="/images/icons/icon-mine.gif" width="25" height="25" align="absmiddle"> Listado completo de empresas </a><br/>
+            <a href="/profiles"><img src="/images/icons/icon-folder.gif" width="25" height="25" align="absmiddle"> Revisar perfiles </a><br/>
+            <a href="/periods"><img src="/images/icons/icon-folder.gif" width="25" height="25" align="absmiddle"> Revisar periodos </a><br/>
+          <% elsif current_user.profile_id == BscgemUtils.profile('minimaster') %>
+            <a href="/profiles"><img src="/images/icons/icon-folder.gif" width="25" height="25" align="absmiddle"> Revisar perfiles </a><br/>
+            <a href="/periods"><img src="/images/icons/icon-folder.gif" width="25" height="25" align="absmiddle"> Revisar periodos </a><br/>
+          <% elsif current_user.profile_id == BscgemUtils.profile('enterprise manager') %>
+            <a href="/areas"><img src="/images/icons/icon-new.gif" width="25" height="25" align="absmiddle"> Crear un cuadro de mando </a><br/>
+            <a href="/users"><img src="/images/icons/icon-mine.gif" width="25" height="25" align="absmiddle"> Listado completo de usuarios </a><br/>
+            <a href="/objectives/list?wich_ones=pending"><img src="/images/icons/icon-pending.gif" width="25" height="25" align="absmiddle"> Objetivos sin actualizar </a><br/>
+          <% elsif current_user.profile_id == BscgemUtils.profile('dashboard manager') %>
+            <a href="/areas"><img src="/images/icons/icon-mine.gif" width="25" height="25" align="absmiddle"> Ver mis cuadros de mando </a><br/>
+            <a href="/objectives/list?wich_ones=pending"><img src="/images/icons/icon-pending.gif" width="25" height="25" align="absmiddle"> Objetivos sin actualizar </a><br/>
+          <% elsif current_user.profile_id == BscgemUtils.profile('objective manager') %>
+            <a href="/objectives"><img src="/images/icons/icon-mine.gif" width="25" height="25" align="absmiddle"> Ver mis objetivos </a><br/>
+            <a href="/initiatives"><img src="/images/icons/icon-mine.gif" width="25" height="25" align="absmiddle"> Ver mis iniciativas </a><br/>
+          <% end %>

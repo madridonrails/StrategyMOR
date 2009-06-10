@@ -1,0 +1,4 @@
+if @successful
+  page.remove "bsc_detail_background"
+end
+page.redirect_to :controller => 'areas', :action => 'bsc', :id => @area_id

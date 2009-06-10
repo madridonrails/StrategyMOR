@@ -1,0 +1,46 @@
+<fieldset>
+  <div class="row">
+    <div class="form-element">
+      <label for="profile_name">Nombre</label>
+      <%= text_field 'profile', 'name' , {:class=>"text-input", :size => '50', :maxlength => '255'} %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-element">
+      <label for="profile_privilege1">Empresas</label>
+      <%= permission_combo('profile', 'privilege1') %>
+    </div>
+    <div class="form-element">
+      <label for="profile_privilege2">Perfiles</label>
+      <%= permission_combo('profile', 'privilege2') %>
+    </div>
+    <div class="form-element">
+      <label for="profile_privilege3">Periodos</label>
+      <%= permission_combo('profile', 'privilege3') %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-element">
+      <label for="profile_privilege4">Usuarios</label>
+      <%= permission_combo('profile', 'privilege4') %>
+    </div>
+    <div class="form-element">
+      <label for="profile_privilege5">Cuadros de mando</label>
+      <%= permission_combo('profile', 'privilege5') %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-element">
+      <label for="profile_privilege6">Objetivos</label>
+      <%= permission_combo('profile', 'privilege6') %>
+    </div>
+    <div class="form-element">
+      <label for="profile_privilege7">Iniciativas</label>
+      <%= permission_combo('profile', 'privilege7') %>
+    </div>
+    <!--div class="form-element">
+      <label for="profile_privilege8">Privilege8</label>
+      <%= text_field 'profile', 'privilege8' , {:class=>"text-input"} %>
+    </div-->
+  </div>
+</fieldset>

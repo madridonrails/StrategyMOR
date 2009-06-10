@@ -1,0 +1,20 @@
+<% 
+    str_control_text = if ( b_is_editable_area )
+        if b_is_page_shared
+            'editar (Compartido)'
+        else
+            'editar'        
+        end    
+    else
+    'zona no editable'
+    end
+    
+    str_onclick = if ( b_is_editable_area )
+"Content.content_edit_window(\"#{page_path}\",\"#{area}\",\"#{content_type}\",\"#{editor_width}\",\"#{editor_height}\")"
+    else
+        "void(0)"
+    end        
+    
+%>
+
+<div class='live_editor' style='display:<%=b_force_control_header && content_admin_role? ? "" : "none"%>' onclick='<%=str_onclick%>'><%=str_control_text%></div><!-- live_editor -->

@@ -1,0 +1,5 @@
+<%= render :partial => 'messages' %>
+
+<% unless @checkpoint.nil? %>
+<%= error_messages_for_scaffold 'checkpoint' %>
+<% end %>

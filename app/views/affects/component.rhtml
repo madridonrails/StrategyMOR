@@ -1,0 +1,39 @@
+<% if @show_wrapper %>
+  <div id="topPage">&nbsp;</div>
+  <div id="middlePage" id="<%= scaffold_content_id(params) %>">
+<% end %>
+<% new_params = params.merge(:controller => '/affects', :action => 'new') %>
+    <%= loading_indicator_tag(new_params) %>
+    <%= link_to_remote 'a&ntilde;adir relaci&oacute;n&nbsp;' + image_tag("icons/icon-add.gif", :title => 'a&ntilde;adir', :alt=>'a&ntilde;adir', :vspace => '5', :border => '0', :align => 'absmiddle'),
+        { :url => new_params,
+          :loading => "Element.show('#{loading_indicator_id(new_params)}');" },
+        { :href => url_for(new_params),
+          :class => "botonerasup" }  if current_user && !current_user.nil? && (current_user.profile.privilege6 == 'X' || current_user.profile.privilege5 == 'E' || current_user.profile.privilege5 == 'A' || current_user.profile.privilege5 == 'O')%>
+    <table width="700px" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+      <%= render :partial => 'shared/column_headings', :locals => { :control => 'affects' } %>
+      </tr>
+      <tbody>
+        <tr>
+          <td colspan="<%= num_columns %>" class="messages-container">
+            <div id="<%= scaffold_messages_id(params) %>">
+            <%= render :partial => 'messages' %>
+            </div>
+            <p id="<%= empty_message_id(params) %>" class="empty-message" <%= " style=\"display:none;\" " if !@affects.empty? %>>
+              No existen relaciones
+            </p>
+          </td>
+        </tr>
+      </tbody>
+      <tbody id="<%= scaffold_tbody_id(params) %>">
+      <% if !@affects.empty? %>
+        <%= render :partial => 'affect', :collection => @affects, :locals => { :hidden => false } %>
+      <% end %>
+      <%= render :partial => 'shared/pagination_links', :locals => { :paginator => @paginator, :control => 'affects' } %>
+      </tbody>
+    </table>
+<% if @show_wrapper %>
+  </div>
+  <div id="bottPage">&nbsp;</div>
+<% end %>
+	  

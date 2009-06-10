@@ -1,0 +1,56 @@
+<html>
+<head>
+  <%= javascript_include_tag :defaults %>
+  <%= content_include_tag %> 
+  
+    <script language='javascript'>
+        function new_section () {            
+            $('id').value = '';
+            $('section_name').value = '';
+        }
+    </script>
+</head>
+<body>
+<div class='popup-header'>
+<% str_parent_path = @page.parent ? @page.parent.page_path : '/'%>
+secciones de <%=str_parent_path%>
+<% if @page.parent && @page.parent.parent
+   arr_link_params = Array.new
+   arr_link_params << "page_template=#{@page_template}" unless @page_template.blank?
+   arr_link_params << "hide_pages=#{@hide_pages}" unless @hide_pages.blank?
+   arr_link_params << "hide_sections=#{@hide_sections}" unless @hide_sections.blank?
+   link_params = arr_link_params.join('&')   
+   link_params="?#{link_params}" if link_params.size > 0
+%>
+    (<a href='javascript:Content.visit_content_page_from_popup("<%=@page.parent.parent.page_path%><%=link_params%>",false)'>subir un nivel</a>)
+<% end -%>
+</div>
+<div style='height:20px;clear:none;'>&nbsp;</div>
+
+<div id='div_section_list' style='height:200px;overflow:auto;'>
+<%=render :partial=>'child_section_list', :locals=>{:page=>@page, :page_template=>@page_template, :hide_sections=>@hide_sections,:hide_pages=>@hide_pages}%>
+</div>
+
+<div style='height:10px;clear:none;'>&nbsp;</div>
+<div id='div_section_edit'>
+<%= form_remote_tag :url => { :action => 'child_section_update'},
+            :update => "div_section_list",  
+            :success =>"new_section()",          
+            :failure => "alert('se produjo un error de comunicación con el servidor')"  %>
+    <fieldset>           
+    <legend>Nueva Sección</legend>       
+    <div style='margin:25px;clear:none'>            
+        <%=hidden_field_tag 'id'%>
+        <%=hidden_field_tag 'parent_page_id', @page.parent ? @page.parent.id : ''%>
+        <label>Nombre: <%=text_field_tag 'section_name'%></label>
+    </div>
+    <div style='margin:5px;clear:none;'>
+        <%=submit_tag 'Aceptar',:class=>'boton'%>
+        <%=button_to_function('Nueva', 'new_section()',:class=>'boton') %>
+    </div>    
+<%= end_form_tag %>
+</div> <!-- div_section_edit -->
+<div style='height:10px;clear:none;'>&nbsp;</div>
+<%=button_to_function('Cerrar Ventana', 'Content.close_focused(true)',:class=>'boton_large') %>
+</body>
+</html>

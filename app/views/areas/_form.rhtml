@@ -1,0 +1,36 @@
+<fieldset>
+  <div class="row">
+    <% if current_user && !current_user.nil? && current_user.profile.privilege1 == 'X'%>
+    <div class="form-element">
+      <label for="area_name">Empresa</label>
+      <%= select 'area', 'enterprise_id' , Enterprise.find_all.collect {|p| [ p.name, p.id ] }, 
+	    { :include_blank => ((params[:action] == 'edit') ? false : true)}, {:style => 'width:200px;'} %>
+    </div>
+    <%= observe_field 'area_enterprise_id', :url => {:controller => '/users', :action => 'combo_by_enterprise_and_privilege', :select_object => 'area', :select_attribute => 'owner', :select_privilege => 5, :select_privilege_values => "X','E','A"}, :update => 'span_area_owner', :with => 'combo_enterprise_id' %>
+    <% else %>
+      <input type="hidden" id="area_enterprise_id" name="area[enterprise_id]" value="<%= current_user.enterprise_id %>"/>
+	<% end %>
+
+    <div class="form-element">
+      <label for="area_owner">Responsable</label>
+      <% if current_user && !current_user.nil? && current_user.profile.privilege5 == 'X'%>
+        <span id="span_area_owner">
+          <%= select 'area', 'owner' , 
+		    ((params[:action] == 'edit') ? User.find_by_enterprise_and_privilege(@area.enterprise_id, 5, ['X','E','A']).collect {|p| [ p.full_name, p.id ] } : []),
+		    (params[:action] == 'edit') ? {:selected => @area.owner}: {:include_blank => true}, {:style => 'width:200px;'} %>
+        </span>
+      <% elsif current_user && !current_user.nil? && (current_user.profile.privilege5 == 'E') %>
+        <%= select 'area', 'owner' , User.find_by_enterprise_and_privilege(current_user.enterprise_id, 5, ['X','E','A']).collect {|p| [ p.full_name, p.id ] },
+		  {:include_blank => false, :selected => ((params[:action] == 'edit') ? @area.owner : current_user.id)}, {:style => 'width:200px;'} %>
+      <% elsif current_user && !current_user.nil? && (current_user.profile.privilege5 == 'A') %>
+        <label id="area_owner"><%= current_user.full_name %></label>
+        <input type="hidden" id="area_owner" name="area[owner]" value="<%= current_user[:id] %>"/>
+      <% end %>
+    </div>
+	
+    <div class="form-element">
+      <label for="area_name">Nombre</label>
+      <%= text_field 'area', 'name' , {:class=>"text-input", :size => '50', :maxlength => '255'} %>
+    </div>
+  </div>
+</fieldset>

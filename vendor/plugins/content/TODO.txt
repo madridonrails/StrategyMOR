@@ -1,0 +1,56 @@
+PONER ancho y alto por defecto del editor como parámetros de configuración (en el helper que pinta el partial de la cabecera de edición html)
+views
+	html_content_edit
+	control_header
+	
+content.js
+
+content_controller
+content_helper
+
+
+------------------------------------------
+-añadir título a las páginas
+
+-force no_control_header para que no renderice el div
+
+-meter fichero con hora de publicación y tenerlo en cuenta en la tarea. Parámetro para forzar publicación total
+
+-sacar la publicación atómica de página/sección a una librería
+
+-poner trazas de lo que se va publicando
+
+-avisar de sobreescritura de ficheros
+
+-borrar antes (excepto directorios svn, que empiecen por punto?) de publicar 
+
+-meter un método helper para el path de la sección padre
+
+-ordenar secciones
+
+-singleton con la estructura de las páginas para evitar lecturas a la db para template/path/permisos. 
+	-Refrescar en borrados, ediciones, inserciones. 
+	-Meterlo con weak references?
+
+-comportamiento extraño de la combo de templates por param template_name al crear nueva
+
+-gestionar publicación de compartidos.
+	-Pantalla única para publicar todo lo modificado desde una fecha o publicación atómica desde popups?
+
+-permitir asignar el nivel de permisos al crear una página nueva
+
+-multiidioma (añadir parámetro a las rutas y meterlo en session)
+
+------ límite del less is more -------------
+-a partir de un html generar, partiendo de los id de los div, todas las partes necesarias para cada página. 
+	-Generar también los templates para cada página con todo lo que no se pase como parte
+	-Molaría tener una acción donde le des el docroot, el te pinte todos los html, y para cada uno
+	todos los div, por defecto marcados con un radio de "template". Habría otros tres radio "html","component","skip".
+	Te preguntaría para cada página el nombre para el gestor y para cada partial su nombre de área (el del div por defecto)
+
+-publicación/despublicación automática? (por fechas)
+-publicar a remoto? acción que recoge user/password y publica 
+-workflow de publicación
+-hacer administración que permita desde el backend crear páginas y modificar sus contenidos 
+	(habría que parsear la plantilla para los no introducidos. Primero parseamos todas las plantillas y cargamos las zonas en memoria para no parsear cada vez)
+- purgar los contenidos de las páginas que no estén en la plantilla que se usa para la página

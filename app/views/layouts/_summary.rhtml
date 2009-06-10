@@ -1,0 +1,14 @@
+          <% if current_user.profile_id == BscgemUtils.profile('master') || current_user.profile_id == BscgemUtils.profile('minimaster') %>
+            <span class="Text13Orange"><b><%= Enterprise.count rescue '0' %></b>&nbsp;</span><span class="Text13Grey">empresas</span><br/>
+            <span class="Text13Orange"><b><%= User.count rescue '0' %></b>&nbsp;</span><span class="Text13Grey">usuarios</span><br/>
+            <span class="Text13Orange"><b><%= Area.count rescue '0' %></b>&nbsp;</span><span class="Text13Grey">cuadros de mando</span><br/>
+          <% elsif current_user.profile_id == BscgemUtils.profile('enterprise manager') %>
+            <span class="Text13Orange"><b><%= current_user.enterprise.users.size rescue '0' %></b>&nbsp;</span><span class="Text13Grey">usuarios</span><br/>
+            <span class="Text13Orange"><b><%= current_user.enterprise.areas.size rescue '0' %></b>&nbsp;</span><span class="Text13Grey">cuadros de mando</span><br/>
+          <% elsif current_user.profile_id == BscgemUtils.profile('dashboard manager') %>
+            <span class="Text13Orange"><b><%= current_user.areas.size rescue '0' %></b>&nbsp;</span><span class="Text13Grey">cuadros de mando</span><br/>
+            <span class="Text13Orange"><b><%= current_user.created_objectives.size rescue '0' %></b>&nbsp;</span><span class="Text13Grey">objetivos</span><br/>
+          <% elsif current_user.profile_id == BscgemUtils.profile('objective manager') %>
+            <span class="Text13Orange"><b><%= current_user.dependent_objectives.size rescue '0' %></b>&nbsp;</span><span class="Text13Grey">objetivos</span><br/>
+            <span class="Text13Orange"><b><%= current_user.dependent_initiatives.size rescue '0' %></b>&nbsp;</span><span class="Text13Grey">iniciativas</span><br/>
+          <% end %>

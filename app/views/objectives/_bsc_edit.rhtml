@@ -1,0 +1,62 @@
+<% params.delete("checkpoint") %>
+
+<% cancel_options = params.merge(:controller => '/objectives', :action => "bsc_cancel") %>
+<% update_options = params.merge(:controller => '/objectives', :action => "bsc_update") %>
+
+<div id="bsc_detail_background">
+  <%= form_remote_tag :url => update_options,
+          :html => { :href => url_for(update_options),  :id => "update_objective" } %>
+  <div class="bsc_detail">
+    <div class="bsc_content_top">&nbsp;</div>
+    <div class="bsc_content">
+      <div class="bsc_title">
+        <div class="bsc_name">Actualizaci&oacute;n de objetivo</div>
+		<div class="bsc_close"><%= link_to_remote "cerrar",{ :url => cancel_options },{ :href => url_for(cancel_options) } %></div>
+      </div>
+      <div id="bsc_messages" class="messages-container" style="float:left;visibility:hidden;display:none;"></div>
+      <div class="bsc_pair">
+        <div class="bsc_label">Nombre:</div>
+        <div class="bsc_input"><%= text_field 'objective', 'name' , {:class=>"text-input", :size => '50', :maxlength => '255'} %></div>
+      </div>
+      <div class="bsc_pair">
+        <div class="bsc_label">Responsable:</div>
+        <div class="bsc_input"><%= select 'objective', 'updater', User.find(:all, :conditions => ['enterprise_id = ?', @objective.perspective.area[:enterprise_id]]).collect {|p| [ p.full_name, p.id ] }, {}, {:style => 'width:200px;'} %></div>
+      </div>
+      <div class="bsc_pair">
+        <div class="bsc_label">Periodicidad:</div>
+        <div class="bsc_input"><%= select 'objective', 'period_id', Period.find(:all).collect {|p| [ p.full_name, p.id ] }, {}, {:style => 'width:200px;'} %></div>
+      </div>
+      <div class="bsc_pair">
+        <div class="bsc_label">Perspectiva:</div>
+        <div class="bsc_input"><%= select 'objective', 'perspective_id', Perspective.find(:all, :conditions => ['area_id = ?', @objective.perspective[:area_id]]).collect {|p| [ p.name, p.id ] }, {}, {:style => 'width:200px;'} %></div>
+      </div>
+      <div class="bsc_pair">
+        <div class="bsc_label">L&iacute;mite inferior:</div>
+        <div class="bsc_input"><%= text_field 'objective', 'lower_limit' , {:class=>"text-input", :size => '10', :maxlength => '15'} %></div>
+      </div>
+      <div class="bsc_pair">
+        <div class="bsc_label">Meta:</div>
+        <div class="bsc_input"><%= text_field 'objective', 'target' , {:class=>"text-input", :size => '10', :maxlength => '15'} %></div>
+      </div>
+      <div class="bsc_pair">
+        <div class="bsc_label">L&iacute;mite superior:</div>
+        <div class="bsc_input"><%= text_field 'objective', 'upper_limit' , {:class=>"text-input", :size => '10', :maxlength => '15'} %></div>
+      </div>
+      <div class="bsc_pair">
+        <div class="bsc_label">Valor:</div>
+        <div class="bsc_input"><%= text_field 'objective', 'value' , {:class=>"text-input", :size => '10', :maxlength => '15'} %></div>
+      </div>
+      <div class="bsc_pair">
+        <div class="bsc_label">Descripci&oacute;n:</div>
+        <div class="bsc_textarea"><%= text_area 'objective', 'description' , {:class=>"text-input", :size => '50', :maxlength => '255'} %></div>
+      </div>
+      <div class="bsc_footer">
+        <%= submit_tag "Aceptar", :class => "submit" %>
+	  </div>
+    </div>
+    <div class="bsc_content_bottom">&nbsp;</div>
+  </div>
+  <%= end_form_tag %>
+</div>
+
+<script>makeItModal();</script>

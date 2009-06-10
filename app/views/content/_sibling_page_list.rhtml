@@ -1,0 +1,52 @@
+<%
+ url_options={ :action => 'sibling_page_list_reorder', :page_id=>page.id, :parent_id=>page.parent, :page_template=>page_template, :hide_sections=>hide_sections,:hide_pages=>hide_pages}
+ update_div = "div_sibling_list"
+ 
+%>            
+<form id='sibling_list_form'>
+
+<table class='popup-table' width="100%">
+<thead>
+    <tr>
+        <th>nombre</th>
+        <th>link</th>
+        <th colspan='5'></th>
+    </tr>
+</thead>    
+<tbody>
+<% 
+   arr_link_params = Array.new
+   arr_link_params << "page_template=#{page_template}" unless page_template.blank?
+   arr_link_params << "hide_pages=#{hide_pages}" unless hide_pages.blank?
+   arr_link_params << "hide_sections=#{hide_sections}" unless hide_sections.blank?
+   link_params = arr_link_params.join('&')   
+   link_params="?#{link_params}" if link_params.size > 0
+   
+   arr_siblings = sibling_page_list(page)
+   i_total = arr_siblings.size
+   arr_siblings.each_with_index do |p,ix|
+    str_page = p.page_path.split('/').last
+%>
+    <tr <%="class='impar'" if ix%2==0%>>
+        <th width='30%'><%=str_page.gsub('-',' ')%></th>
+        <td width='45%'><a href='javascript:Content.visit_content_page_from_popup("<%=p.page_path%><%=link_params%>",false)'>/web<%=p.page_path%></a></td>
+<% if page.parent%>    
+        <td class='thin'><%=submit_to_remote 'subir','subir',:update => update_div, :url =>url_options.merge(:position=>p.position,:delta=>p.position > 1 ? '-1' : 0),:html=>{:class=>'boton_small'}%></td>
+        <td class='thin'><%=submit_to_remote 'bajar','bajar',:update => update_div, :url =>url_options.merge(:position=>p.position,:delta=>p.position < i_total ? '1' : 0),:html=>{:class=>'boton_small'}%></td>    
+        <td class='thin'><%=submit_to_remote 'primera','primera',:update => update_div, :url =>url_options.merge(:position=>p.position,:delta=>(p.position*-1)+1),:html=>{:class=>'boton_small'}%></td>
+        <td class='thin'><%=submit_to_remote 'ultima','última',:update => update_div, :url =>url_options.merge(:position=>p.position,:delta=>i_total - p.position),:html=>{:class=>'boton_small'}%></td>
+<% end -%>    
+        <td class='thin'>
+            <%if p.id == page.id%>
+                Actual
+            <%else%>    
+                <%=submit_to_remote 'borrar','borrar',:update => update_div, :url =>{ :action => 'sibling_page_delete', :id=>p.id, :sibling_page_id=>page.id, :page_template=>page_template, :hide_sections=>hide_sections,:hide_pages=>hide_pages}, :html=>{:class=>'boton_small'},:confirm=>'¿Eliminar esta página (y todas sus hijas)?'%>
+            <%end%>
+        </td>            
+    </tr>
+<%  end -%>
+</tbody>
+</table>
+</form>
+
+<%=error_messages_for :sibling_page%>

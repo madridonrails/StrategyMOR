@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+    <title>web</title>
+
+<%
+# if you need to use different css for the contents, you can define alternate
+# stylesheets. The default one must have :rel=>'stylesheet' and its alternatives
+# must have :rel=>'alternate stylesheet'. Then you can use the provided
+# javascript function setActiveStyleSheet with the title of the css to use
+#= stylesheet_link_tag 'styles', :rel=>'stylesheet', :title=>'styles' 
+#= stylesheet_link_tag 'styles_b', :rel=>'alternate stylesheet', :title=>'styles_b'
+-%>
+
+
+<%= javascript_include_tag :defaults %>  
+<%#the next helper method includes the js and css files for the content admin 
+-%>
+<%= content_include_tag %> 
+
+
+</head>
+    <body>
+    <% if content_admin_role? && @hide_admin.blank?%>
+      <%= render :partial => 'content/content_admin_bar' %>
+    <% end %>
+    <div id='content_holder_page' >
+        <%= @content_for_layout %> 
+    </div> <!-- content_holder_page -->
+  </body>
+</html>

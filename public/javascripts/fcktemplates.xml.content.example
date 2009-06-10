@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+ * FCKeditor - The text editor for internet
+ * Copyright (C) 2003-2006 Frederico Caldeira Knabben
+ * 
+ * Licensed under the terms of the GNU Lesser General Public License:
+ * 		http://www.opensource.org/licenses/lgpl-license.php
+ * 
+ * For further information visit:
+ * 		http://www.fckeditor.net/
+ * 
+ * "Support Open Source software. What about a donation today?"
+ * 
+ * File Name: fcktemplates.xml
+ * 	This is the sample templates definitions file. It makes the "templates" 
+ * 	command completely customizable.
+ * 	See FCKConfig.TemplatesXmlPath in the configuration file.
+ * 
+ * File Authors:
+ * 		Frederico Caldeira Knabben (fredck@fckeditor.net)
+-->
+<Templates imagesBasePath="fck_template/images/">
+	<Template title="Catalogo">
+		<Description>Catálogo de productos(Imagen derecha)</Description>
+		<Html>
+			<![CDATA[
+				<table border="0" cellspacing="0" cellpadding="0" class="cattable">
+          <tr>
+            <td class="catcell"><span class="titular06">Nombre Producto</span><br>
+              <span class="cuerpo2">Descripción producto</span></td>
+            <td class="catcell2"><img src="/images/_example_.jpg" width="113" height="151" class="catimg"/></td>
+          </tr>
+        </table>
+			]]>
+		</Html>
+	</Template>
+	<Template title="Catalogo">
+		<Description>Catálogo de productos(Imagen Izquierda)</Description>
+		<Html>
+			<![CDATA[
+				<table border="0" cellspacing="0" cellpadding="0" class="cattable">
+          <tr>
+						<td class="catcell2"><img src="/images/_example_.jpg" width="113" height="151" class="catimg"/></td>
+            <td class="catcell"><span class="titular06">Nombre Producto</span><br>
+              <span class="cuerpo2">Descripción producto</span></td>            
+          </tr>
+        </table>
+			]]>
+		</Html>
+	</Template>
+	<!--Template title="Strange Template" image="template2.gif">
+		<Description>A template that defines two colums, each one with a title, and some text.</Description>
+		<Html>
+			<![CDATA[
+				<table cellspacing="0" cellpadding="0" width="100%" border="0">
+					<tbody>
+						<tr>
+							<td width="50%">
+							<h3>Title 1</h3>
+							</td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+							<td width="50%">
+							<h3>Title 2</h3>
+							</td>
+						</tr>
+						<tr>
+							<td>Text 1</td>
+							<td>&nbsp;</td>
+							<td>Text 2</td>
+						</tr>
+					</tbody>
+				</table>
+				More text goes here.
+			]]>
+		</Html>
+	</Template -->
+</Templates>

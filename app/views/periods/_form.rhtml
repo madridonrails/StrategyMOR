@@ -1,0 +1,12 @@
+<fieldset>
+  <div class="row">
+    <div class="form-element">
+      <label for="period_name">el dia </label>
+      <%= text_field 'period', 'days' , {:class=>"text-input", :size => '5', :maxlength => '15'} %>
+    </div>
+    <div class="form-element">
+      <label for="period_days"> de cada </label>
+      <%= select 'period', 'time_unit_id' , TimeUnit.find_all.collect {|p| [ p.name, p.id ] }, {}, {:style => 'width:200px'} %>
+    </div>
+  </div>
+</fieldset>

@@ -1,0 +1,40 @@
+<div id='content_admin_bar'class='admin_bar'>
+   <%=form_tag({},:id=>'admin_form')-%>
+    <%=hidden_field_tag 'page_id', @obj_page[:id]%>
+    <table style='width:100%'>
+      <tr>
+        <td style='width:30%'>      
+          página: <%=@obj_page.page_path%>
+        </td>
+        <td style='width:30%'>
+<% if @page_template.blank?%>
+        Plantilla: <%=select_tag('page_template', options_for_template_list (@obj_page.page_template) ) -%>
+<% end%>        
+        </td>
+<%
+  link_params = "page_id=#{@obj_page.id}"
+  link_params += "&page_template=#{@page_template}"
+  link_params += "&hide_sections=#{@hide_sections}"
+%>        
+        <td style='width:10%;text-align:right;'>
+<% if @hide_pages.blank?%>        
+            <a href='javascript:Content.modal_window("Páginas","/content/sibling_pages_edit", "<%=link_params%>")'>páginas</a>
+<% end %>                    
+        </td>
+        <td style='width:10%;text-align:right;'>
+<% if @hide_sections.blank?%>        
+            <a href='javascript:Content.modal_window("Secciones","/content/child_sections_edit", "<%=link_params%>")'>secciones</a>
+<% end %>                    
+        </td>
+        <td style='width:20%;text-align:right;'>
+          <a href='javascript:Content.toggle_live_editors()'>mostrar/ocultar zonas</a>
+        </td>  
+        
+      </tr>  
+    </table>  
+        <%=end_form_tag -%> 
+     
+     <%=observe_form('admin_form',:url=>{:action=>'change_current_page_template', :page_template=>@page_template,
+                    :hide_sections=>@hide_sections, :hide_pages=>@hide_pages}, :update=>'document')-%>
+    
+</div> <!-- content_admin_bar -->

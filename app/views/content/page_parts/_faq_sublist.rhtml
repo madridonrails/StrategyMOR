@@ -1,0 +1,12 @@
+  <% pages = @obj_page.siblings %>
+  <ul style="display:block;">
+    <li class="Title18OrangeHelp" style="display:block;">
+      <%= get_html_content(@obj_page.page_path, 'pregunta') %>
+    </li>
+    <% pages.each do |page| %>
+      <li class="Text13GreyHelp" style="display:block;">
+        <% texto_pregunta = get_html_text(page.page_path, 'pregunta') %>
+        <%= link_to((texto_pregunta.empty? ? page.title : texto_pregunta), {:controller => 'content', :action => 'display_content_page', :page_path => page.page_path}) rescue '' %>
+      </li>
+  <% end %>
+  </ul>  

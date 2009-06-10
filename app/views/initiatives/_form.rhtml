@@ -1,0 +1,113 @@
+<fieldset>
+  <div class="row">
+    <% if current_user && !current_user.nil? && current_user.profile.privilege1 == 'X'%>
+    <div class="form-element">
+      <label for="area_enterprise_id">Empresa</label>
+      <%= select 'area', 'enterprise_id' , Enterprise.find_all.collect {|p| [ p.name, p.id ] }, 
+	    { :include_blank => ((params[:action] == 'edit') ? false : true),
+		  :selected => ((params[:action] == 'edit') ? @initiative.objective.perspective.area.enterprise_id : nil) }, 
+		{:style => 'width:200px;'} %>
+    </div>
+    <%= observe_field 'area_enterprise_id', :url => {:controller => '/areas', :action => 'combo_by_enterprise', :select_object => 'initiative'}, :update => 'span_perspective_area_id', :with => 'combo_enterprise_id' %>
+    <%= observe_field 'area_enterprise_id', :url => {:controller => '/users', :action => 'combo_by_enterprise_and_privilege', :select_object => 'initiative', :select_attribute => 'assigned_to', :select_privilege => 7, :select_privilege_values => "X','E','A','O"}, :update => 'span_initiative_assigned_to', :with => 'combo_enterprise_id' %>
+    <%= observe_field 'area_enterprise_id', :function => "emptySelect('objective_perspective_id')"%>
+    <%= observe_field 'area_enterprise_id', :function => "emptySelect('initiative_objective_id')"%>
+    <% end %>
+
+    <div class="form-element">
+      <label for="initiative_assigned_to">Responsable</label>
+	  <span id="span_initiative_assigned_to">
+      <% if current_user && !current_user.nil? && current_user.profile.privilege1 == 'X'%>
+        <%= select 'initiative', 'assigned_to' , 
+		  ((params[:action] == 'edit') ? User.find_by_enterprise_and_privilege(@initiative.objective.perspective.area.enterprise_id, 7, ['X','E','A','O']).collect {|p| [ p.full_name, p.id ] } : []),
+		  {:selected => ((params[:action] == 'edit') ? @initiative.assigned_to : nil)}, 
+		  {:style => 'width:200px;'} %>
+      <% else %>
+        <%= select 'initiative', 'assigned_to' , User.find_by_enterprise_and_privilege(current_user.enterprise_id, 7, ['X','E','A','O']).collect {|p| [ p.full_name, p.id ] },
+		  {:include_blank => ((params[:action] == 'edit') ? false : true), :selected => ((params[:action] == 'edit') ? @initiative.assigned_to : nil)},
+          {:style => 'width:200px;'} %>
+      <% end %>
+	  </span>
+    </div>
+  </div>
+	
+  <div class="row">
+    <% if current_user && !current_user.nil? && (current_user.profile.privilege7 == 'X' || current_user.profile.privilege7 == 'E' ||current_user.profile.privilege7 == 'A' )%>
+    <div class="form-element">
+      <label for="perspective_area_id">Cuadro de mando</label>
+	  <span id="span_perspective_area_id">
+      <% if current_user && !current_user.nil? && current_user.profile.privilege5 == 'X'%>
+        <%= select 'perspective', 'area_id' , 
+		  ((params[:action] == 'edit') ? Area.find(:all, :conditions => ['enterprise_id = ?', @initiative.objective.perspective.area.enterprise_id]).collect {|p| [ p.name, p.id ] } : []), 
+		  {:selected => ((params[:action] == 'edit') ? @initiative.objective.perspective.area_id : nil) },
+          {:style => 'width:200px;'} %>
+	  <% elsif current_user && !current_user.nil? && current_user.profile.privilege5 == 'E'%>
+        <%= select 'perspective', 'area_id' , Area.find(:all, :conditions => ['enterprise_id = ?', current_user.enterprise_id]).collect {|p| [ p.name, p.id ] },
+		  {:include_blank => ((params[:action] == 'edit') ? false : true), :selected => ((params[:action] == 'edit') ? @initiative.objective.perspective.area_id : nil) },
+        {:style => 'width:200px;'} %>
+      <% elsif current_user && !current_user.nil? && current_user.profile.privilege5 == 'A'%>
+        <%= select 'perspective', 'area_id' , Area.find(:all, :conditions => ['enterprise_id = ? AND owner = ?', current_user.enterprise_id, current_user[:id]]).collect {|p| [ p.name, p.id ] },
+		  {:include_blank => ((params[:action] == 'edit') ? false : true), :selected => ((params[:action] == 'edit') ? @initiative.objective.perspective.area_id : nil) },
+        {:style => 'width:200px;'} %>
+      <% end %>
+	  </span>
+    </div>
+    <%= observe_field 'perspective_area_id', :url => {:controller => '/perspectives', :action => 'combo_by_area', :select_object => 'initiative'}, :update => 'span_objective_perspective_id', :with => 'combo_area_id' %>
+    <%= observe_field 'perspective_area_id', :function => "emptySelect('initiative_objective_id')"%>
+
+    <div class="form-element">
+      <label for="objective_perspective_id">Perspectiva</label>
+        <span id="span_objective_perspective_id">
+          <%= select 'objective', 'perspective_id' , 
+	    ((params[:action] == 'edit') ? Perspective.find(:all, :conditions => ['area_id = ?', @initiative.objective.perspective.area_id]).collect {|p| [ p.name, p.id ] } : []), {:include_blank => ((params[:action] == 'edit') ? false : true), :selected => ((params[:action] == 'edit') ? @initiative.objective.perspective_id : nil) }, {:style => 'width:200px;'} %>
+	  </span>
+    </div>
+    <%= observe_field 'objective_perspective_id', :url => {:controller => '/objectives', :action => 'combo_by_perspective', :select_object => 'initiative'}, :update => 'span_objective_id', :with => 'combo_perspective_id' %>
+    <div class="form-element">
+      <label for="initiative_objective_id">Objetivo</label>
+	  <span id="span_objective_id">
+      <%= select 'initiative', 'objective_id' , 
+	  ((params[:action] == 'edit') ? Objective.find(:all, :conditions => ['perspective_id = ?', @initiative.objective.perspective_id]).collect {|p| [ p.name, p.id ] } : []), {:include_blank => ((params[:action] == 'edit') ? false : true)}, {:style => 'width:200px;'} %>
+	  </span>
+    </div>
+    <% else %>
+    <div class="form-element">
+      <label for="initiative_objective_id">Objetivo</label>
+        <span id="span_objective_id">
+          <%= select 'initiative', 'objective_id' , 
+	  current_user.dependent_objectives.collect {|p| [ p.name, p.id ] }, {:include_blank => ((params[:action] == 'edit') ? false : true)}, {:style => 'width:200px;'} %>
+	  </span>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="form-element">
+      <label for="initiative_name">Nombre</label>
+      <%= text_field 'initiative', 'name' , {:class=>"text-input", :size => '50', :maxlength => '255'} %>
+    </div>
+    <div class="form-element">
+      <label for="initiative_budget">Presupuesto</label>
+      <%= text_field 'initiative', 'budget' , {:class=>"text-input", :size => '15', :maxlength => '15'} %>
+    </div>
+    <div class="form-element">
+      <label for="initiative_budget_attribute">Etiqueta</label>
+      <%= text_field 'initiative', 'budget_attribute' , {:class=>"text-input", :size => '5', :maxlength => '25'} %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-element">
+      <label for="initiative_ini_date">Inicio</label>
+      <%= dynarch_date_select 'initiative', 'ini_date', :date_format => "%d/%m/%Y"%>
+    </div>  
+    <div class="form-element">
+      <label for="initiative_end_date">Fin</label>
+      <%= dynarch_date_select 'initiative', 'end_date', :date_format => "%d/%m/%Y"%>
+    </div>
+    <div class="form-element">
+      <label for="initiative_description">Descripci&oacute;n</label>
+      <%= text_area 'initiative', 'description' , {:class=>"text-input"} %>
+    </div>
+  </div>
+</fieldset>

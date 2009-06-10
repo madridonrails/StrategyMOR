@@ -1,0 +1,18 @@
+<%
+  @obj_page.parent.child_sections.each do |section|
+  pages = section.child_pages
+%>
+  <ul style="display:block;">
+    <li class="Title18OrangeHelp" style="display:block;">
+      <% texto_seccion = get_html_text(pages[0].page_path, 'seccion') %>
+      <%= link_to((texto_seccion.empty? ? section.title : texto_seccion), {:controller => 'content', :action => 'display_content_page', :page_path => pages[0].page_path}) rescue '' %>
+    </li>
+    <% pages[1..1000].each do |page| %>
+      <li class="Text13GreyHelp" style="display:block;">
+        <% texto_pregunta = get_html_text(page.page_path, 'pregunta') %>
+        <%= link_to((texto_pregunta.empty? ? page.title : texto_pregunta), {:controller => 'content', :action => 'display_content_page', :page_path => page.page_path}) rescue '' %>
+      </li>
+  <% end %>
+  </ul>  
+  <br/>
+<% end %>

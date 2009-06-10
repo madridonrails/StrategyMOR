@@ -1,0 +1,6 @@
+--- 
+foo: 
+  id: 1
+  days: 1
+  time_unit_id: 1
+  updated_at: 2007-02-05 18:33:14 +01:00

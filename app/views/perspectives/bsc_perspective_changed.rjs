@@ -1,0 +1,27 @@
+if @successful
+  if @close_popup == true
+    page.remove "bsc_detail_background"
+  end
+
+  @perspectives_to_delete.each do |@perspective|
+    page.remove "perspective#{@perspective.id}"
+  end
+
+  @perspectives_to_repaint.each do |@perspective|
+    page.replace "perspective#{@perspective.id}", :partial => "perspectives/bsc", :locals => {:persp => @perspective}
+  end
+
+  @perspectives_to_add.each do |@perspective|
+    if @before.nil?
+      page.insert_html :after, "dnd_perspective_form", :partial => "perspectives/bsc", :locals => {:persp => @perspective}
+    elsif @before.to_i >= 0
+      page.insert_html :before, "perspective#{@before}", :partial => "perspectives/bsc", :locals => {:persp => @perspective}
+    else
+      page.insert_html :bottom, "bsc", :partial => "perspectives/bsc", :locals => {:persp => @perspective}
+    end
+  end
+else
+  page.replace_html 'bsc_messages', :partial => 'form_messages'
+  page << "$('bsc_messages').style.visibility = 'visible';"
+  page << "$('bsc_messages').style.display = 'block';"
+end

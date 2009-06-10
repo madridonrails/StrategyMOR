@@ -1,0 +1,32 @@
+<html>
+<head>
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag :fckeditor %> 
+<%= content_include_tag %> 
+</head>
+<body>
+<div style='height:100px;clear:none;'>&nbsp;</div>
+
+<%= form_remote_tag :url => { :action => 'component_content_update', :id => @component_content},
+            :update => "content_area_#{@obj_content.area}",  
+            :success =>"Content.parent_content_from_remote('content_area_#{@obj_content.area}',request);Content.close_focused(true)",          
+            :failure => "alert('se produjo un error de comunicación con el servidor')"  %>
+    <div style='margin:30px;clear:none'>            
+        <%=hidden_field_tag 'obj_content[content_page_id]', @obj_content.content_page_id %>
+        <%=hidden_field 'obj_content', 'area' %>
+        <%=hidden_field 'obj_content', 'id' %>        
+        
+        <%=select_tag('obj_content[component]', options_for_component_list(@obj_content.component)  ) -%>
+
+    </div>
+    <div style='margin:30px;clear:none;'>
+        <%=submit_tag 'Aceptar'%>
+        <%=button_to_function('Cancelar', 'Content.close_focused(false)') %>
+        &nbsp;<%=link_to 'Recuperar Versión ' + (@obj_content.version==1 ? 'Anterior' : 'Actual'), 
+              {:action=>'component_content_edit',:page_path=>@obj_content.content_page.page_path, 
+                 :area=>@obj_content.area, :version=>(@obj_content.version==1 ? 0 : 1)}%>
+    </div>    
+<% end_form_tag %>
+</body>
+</html>
+          

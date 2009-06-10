@@ -1,0 +1,21 @@
+<%if is_admin_user?%>
+<div id="centercolumn">
+<%end%>
+<div id="unit_div" style="width:700px;">
+<%unless is_admin_user?%>
+  <div><%=get_component('unit_navigation_bar',@obj_page.page_path)%></div>
+<%end%>
+  <div id="contenido" style="overflow:hidden">
+    <%=get_html_content(@obj_page.page_path, 'principal') %>
+  </div> <!-- contenido -->
+<%unless is_admin_user?%>
+  <BR/>
+  <div><%=get_component('unit_navigation_bar',@obj_page.page_path)%></div>
+  <BR/>
+<%end%>
+</div> <!-- unit_div -->
+<%if is_admin_user?%>
+</div> <!-- centercolumn -->
+<%end%>
+
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Styles>
+	<Style name="Title12Grey" element="span"><Attribute name="class" value="Title12Grey"/></Style>
+	<Style name="Title13Grey" element="span"><Attribute name="class" value="Title13Grey"/></Style>
+	<Style name="Title18Grey" element="span"><Attribute name="class" value="Title18Grey"/></Style>
+	<Style name="Title18DarkGrey" element="span"><Attribute name="class" value="Title18DarkGrey"/></Style>
+	<Style name="Title24Orange" element="span"><Attribute name="class" value="Title24Orange"/></Style>
+	<Style name="Title48DarkGrey" element="span"><Attribute name="class" value="Title48DarkGrey"/></Style>
+	<Style name="Text11Orange" element="span"><Attribute name="class" value="Text11Orange"/></Style>
+	<Style name="Text13Grey" element="span"><Attribute name="class" value="Text13Grey"/></Style>
+	<Style name="Text13Orange" element="span"><Attribute name="class" value="Text13Orange"/></Style>
+	<Style name="Text18Orange" element="span"><Attribute name="class" value="Text18Orange"/></Style>
+	<Style name="Text24Grey" element="span"><Attribute name="class" value="Text24Grey"/></Style>
+</Styles>

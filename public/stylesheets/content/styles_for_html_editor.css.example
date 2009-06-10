@@ -1,0 +1,135 @@
+body {
+ font-family: Trebuchet MS, Arial, Helvetica, sans-serif;
+ color: #666666;
+ font-size: 12px;
+}
+a, a:link, a:active {
+	color: #A20000;
+	text-decoration:none;
+	padding: 0 2px;
+}
+
+a:hover {
+	color: #F00;
+}
+
+
+li{
+	margin: 5px 25px;
+	font-size: 1em;
+	list-style-image:url(/images/dot_list.png);
+	}
+
+
+h1{
+	 font-family:Georgia, "Times New Roman", Times, serif;
+	 font-size: 24px;
+	 font-style: italic;
+	 font-weight: normal;
+	 color: #E5D7D0;
+	 margin: 0 0 0 7px;
+	 line-height: 70px;
+ 	display: block;
+ 	color: #6D6152;
+	margin: 0 0 0 0;
+	background-image: url(/images/h1_bg.png);
+	background-repeat: repeat-x;
+	background-position: bottom;
+	width: 99%;
+	height: 2.7em;
+	margin: -17px 0 0 0;
+	*margin: -15px 0 0 0;
+}
+
+p {
+	 font-size: 1em;
+	 margin: 15px 5px 0 0;
+	 *margin: 0 5px 15px 0;
+}
+
+#nav1 span.parrafo_granate,#contenido span.parrafo_granate,span.parrafo_granate {
+color:#A20000;
+font-size:1em;
+}
+
+#nav1 span.parrafo,#contenido span.parrafo,span.parrafo{
+font-size:1em;
+}
+
+
+
+h2 {
+	color: #A20000;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-weight: normal;
+	font-size: 1.5em;
+}
+
+.h3-menu{
+	display:block;
+	background-image:url(/images/nav2_top_bg.png);
+	background-repeat: no-repeat; 
+	width: 296px;
+	height: 46px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 18px;
+	font-weight: normal;
+	color: #6D6152;
+	line-height: 45px;
+	text-indent: 15px;
+}
+
+
+li-menu{
+	display:block;
+	line-height: 30px;
+	border-bottom: 1px solid #DDD;
+	left: 30px;
+	background-image:url(/images/nav2_li.png);
+	background-position: top;
+	background-repeat: repeat-y;
+	width: 262px;
+	height: 30px;
+	text-indent: 20px;
+	overflow: hidden;
+	
+	}
+li-menu a, li-menu a:link, li-menu a:active{
+	display:block;
+	background-image:url(/images/nav2_li.png);
+	background-position: top;
+	background-repeat: repeat-y;
+	width: 262px;
+	height: 30px;
+	text-indent: 20px;
+	overflow: hidden;
+}
+
+#nav1 span.parrafo2,#contenido span.parrafo2,span.parrafo2{
+color:#333333;
+font-family:Verdana,Geneva,Arial,Helvetica,sans-serif;
+font-size:1em;
+}
+
+#nav1 span.parrafo2_granate,#contenido span.parrafo2_granate,span.parrafo2_granate {
+color:#A20000;
+font-family:Verdana,Geneva,Arial,Helvetica,sans-serif;
+font-size:1em;
+}
+
+#nav1 h1.titulo1_granate, #contenido h1.titulo1_granate, h1.titulo1_granate{
+	 font-family:Georgia, "Times New Roman", Times, serif;
+	 font-size: 24px;
+	 font-style: italic;
+	 font-weight: normal;
+	 color: #A20000;
+	 margin: 0 0 0 7px;
+	 line-height: 70px;
+	background-image: url(/images/h1_bg.png);
+	background-repeat: repeat-x;
+	background-position: bottom;
+	width: 99%;
+	height: 2.7em;
+	margin: -17px 0 0 0;
+	*margin: -15px 0 0 0;
+}

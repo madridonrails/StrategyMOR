@@ -1,0 +1,86 @@
+div#menu{
+	width:100%;
+	overflow:hidden;
+	height:32px;
+}
+ul#nav{
+	float:left;
+	list-style-type:none;
+	font-weight:bold;
+	font-size:13px;
+	margin-top:11px;
+}
+ul#nav li{
+	float:left;
+	text-align:center;
+	list-style-type:none;
+	padding: 3px 1px 3px 1px;
+}
+ul#nav a{
+	padding: 3px 5px 3px 5px;
+	text-decoration:none;
+	border: 1px solid #B9383E;
+}
+ul#nav a:hover{
+	color:#ffffff;
+}
+ul#nav li.activelink a{
+	background-image:url(../images/prog_pestania_active.png);
+}
+ul#nav li.activelink a,ul#nav a:hover{
+	color:#FFF;
+	background-image:url(../images/prog_pestania_hover.png);
+}
+li#nonactive a{
+	color:#EEE;
+	background-image:url(../images/prog_pestania_off.png);
+}
+li#active a{
+	background-color:#ffffff;
+	color:#600;
+	background-image:url(../images/prog_pestania_active.png);
+}
+
+div#filter{
+	width:100%;
+	height:21px;
+	overflow:hidden;
+	color:#880000;
+	margin-top:11px;
+	margin-bottom:11px;
+	font-size:11px;
+}
+div#filter input, div#filter select {
+	font-size: 11px;
+	border: solid 1px #660000;
+}
+div#unit_menu{
+	background-color:#ffbbbb;
+	width:100%;
+}
+div#unit_menu h2{
+	font-weight:bold;
+	font-size:13px;
+	color:#880000;
+	margin-top:5px;
+	margin-bottom:6px;
+}
+div#unit_menu ul#nav{
+	float:right;
+	list-style-type:none;
+	font-weight:bold;
+	font-size:13px;
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-right:15px;
+}
+div#unit_menu ul#nav li#nonactive a{
+	background:#ffbbbb;
+	color:#cc0000;
+	border: 1px solid #cc0000;
+}
+div#unit_menu ul#nav li#active a{
+	background:#cc0000;
+	color:#ffffff;border:
+	1px solid #cc0000;
+}

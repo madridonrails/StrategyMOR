@@ -1,0 +1,9 @@
+module ContentPermissionsHelper
+	def content_admin_role?(page=nil)
+		return true
+	end
+	
+	def content_language    
+    Content.default_language   
+  end
+end

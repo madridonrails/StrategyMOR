@@ -1,0 +1,64 @@
+<html>
+<head>
+<%= javascript_include_tag :defaults %>
+<%= content_include_tag %> 
+    <script language='javascript'>
+        function edit_page (page_id, page_name, page_template) {            
+            $('id').value = page_id;
+            $('page_name').value = page_name;
+            $('page_template').value = page_template;
+        }
+        
+        function new_page (page_name, page_template) {            
+            $('id').value = '';
+            $('page_name').value = '';         
+        }
+    </script>
+</head>
+<body>
+<div class='popup-header'>
+páginas de
+<%if @page.parent.nil? %>
+/
+<% else %>
+    <%=@page.parent.page_path%>
+<%end%>
+</div> <!-- window header-->
+
+<div style='height:20px;clear:none;'>&nbsp;</div>
+
+<div id='div_sibling_list' style='height:200px;overflow:auto;'>
+<%=render :partial=>'sibling_page_list', :locals=>{:page=>@page,:page_template=>@page_template, :hide_sections=>@hide_sections,:hide_pages=>@hide_pages}%>
+</div>
+
+
+<div style='height:10px;clear:none;'>&nbsp;</div>
+<div id='div_sibling_edit'>
+<%= form_remote_tag :url => { :action => 'sibling_page_update'},
+            :update => "div_sibling_list",  
+            :success =>"new_page()",          
+            :failure => "alert('se produjo un error de comunicación con el servidor')"  %>
+    <fieldset>           
+    <legend>Nueva Página</legend>
+    <div style='margin:25px;clear:none'>            
+        <%=hidden_field_tag 'id'-%>
+        <%=hidden_field_tag 'sibling_page_id', @page.id -%>
+        <%=hidden_field_tag 'parent_page_id', @page.parent ? @page.parent.id : ''-%>        
+        <label>Nombre: <%=text_field_tag 'page_name'%></label>
+<% if @page_template.blank? %>
+        <label>Plantilla: <%=select_tag('page_template', options_for_template_list ) -%></label>
+<% else %>        
+        <%=hidden_field_tag 'page_template', @page_template -%>
+<% end %>
+    </div>
+    <div style='margin:5px;clear:none;'>
+        <%=submit_tag 'Aceptar', :class=>'boton'%>
+        <%#=button_to_function('Nueva', 'new_page()',:class=>'boton') %>
+    </div>    
+    </fieldset>
+<%= end_form_tag %>
+</div> <!-- div_sibling_edit -->
+<div style='height:10px;clear:none;'>&nbsp;</div>
+<%=button_to_function('Cerrar Ventana', 'Content.close_focused(true)',:class=>'boton_large') %>
+</body>
+</html>

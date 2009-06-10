@@ -1,0 +1,18 @@
+<% if account_subdomain != 'www' %>
+
+<%= start_form_tag :action => 'login' %>
+<p><label for="login">Email</label><br/>
+<%= text_field_tag 'email' %></p>
+
+<p><label for="password">Password</label><br/>
+<%= password_field_tag 'password' %></p>
+
+<p><%= submit_tag 'Entrar' %></p>
+<p><%= link_to("olvid&eacute; mi contrase&ntilde;a", :controller => 'account', :action => 'send_me_a_password')%></p>
+<%= end_form_tag %>
+
+<% else %>
+
+<p><%= link_to("reg&iacute;strese", :controller => 'account', :action => 'signup')%></p>
+
+<% end %>

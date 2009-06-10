@@ -1,0 +1,24 @@
+<fieldset>
+  <div class="row">
+    <div class="form-element">
+      <label for="enterprise_name">Nombre</label>
+      <%= text_field 'enterprise', 'name' , {:class=>"text-input", :size => '50', :maxlength => '255'} %>
+    </div>
+    <div class="form-element">
+      <label for="enterprise_alias">Alias(para tu subdominio)</label>
+      <%= text_field 'enterprise', 'alias' , {:class=>"text-input", :size => '25', :maxlength => '50'} %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-element">
+      <label for="enterprise_logo">Logo</label>
+	  <%= file_field 'enterprise', :uploaded_data %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-element">
+      <label for="enterprise_contact">Informaci&oacute;n de contacto</label>
+      <%= text_field 'enterprise', 'contact' , {:class=>"text-input", :size => '100', :maxlength => '255'} %>
+    </div>
+  </div>
+</fieldset>

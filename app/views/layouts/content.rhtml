@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="content-language" content="es" />
+    <meta name="copyright"    content="Copyright 2009 ASPgems" />
+    <meta name="description"  content="Aplicacion para cuadros de mando on-line" />
+    <meta name="keywords"     content="<%= APP_NAME %>, cuadro de mando, dashboard, balance scored card, objetivo, control" />
+    <meta name="robots"       content="index,follow" />
+    <meta name="language"     content="ES" />
+    <meta name="distribution" content="global" />
+    <meta name="abstract"     content="<%= APP_NAME %> es una aplicacion on-line con la que manejar cuadros de mando" />
+
+    <title><%= APP_NAME %>: cuadro de mando on-line</title>
+  
+    <%= stylesheet_link_tag 'structure.css' %>
+    <%= stylesheet_link_tag 'type.css' %>
+    <%= javascript_include_tag :defaults %>  
+    <%= content_include_tag %> 
+  </head>
+  <body>
+    <% if content_admin_role? && @hide_admin.blank?%>
+      <%= render :partial => 'content/content_admin_bar' %>
+    <% end %>
+    <div id='content_holder_page' >
+      <div id="main">
+        <%= render_partial '/content/page_parts/public_header'%>
+        <div id="content">
+        <%= @content_for_layout %> 
+        </div>
+        <%= render_partial '/content/page_parts/public_footer'%>
+      </div>
+    </div> <!-- content_holder_page -->
+  </body>
+</html>
